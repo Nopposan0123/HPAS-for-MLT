@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hazard prediction assist sysytem</title>
+    <link rel="Stylesheet" href="Hazard prediction assist system.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <style>
+      canvas{
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+    </style>
+  </head>
+  
+  <body>
+  <header class="header">
+      <div class="header-logo">Hazard prediction assist system</div>
+
+  <form name="form">
+    <div class="process-work">
+        <h2>Process</h2>
+        <select id="process">
+            <option value="0">GL-1</option>
+            <option value="1">GL-2</option>
+            <option value="2">GL-4</option>
+            <option value="3">GL-5</option>
+            <option value="4">GL-6</option>
+            <option value="5">GL-7</option>
+            <option value="6">GL-8</option>
+            <option value="7">GD-7</option>
+            <option value="8">M-3110</option>
+            <option value="9">M-302</option>
+            <option value="10">VP-4500</option>
+            <option value="11">PE</option>
+            <option value="12">Others</option>
+        </select>
+    </div>
+
+    <div class="process-work">
+        <h2>Work 1</h2>
+        <select id="work1", name="select2">
+            <option value="0">Valve operation</option>
+            <option value="1">Moving heavy objects</option>
+            <option value="2">Cleaning work</option>
+            <option value="3">Work at height</option>
+            <option value="4">Liquid transfer,drainage work</option>
+            <option value="5">Facility management</option>
+            <option value="6">Sampling work</option>
+            <option value="7">Working with lift</option>
+            <option value="8">Walking</option>
+            <option value="9">Traveling on steps or stairways</option>
+            <option value="10">Gauge checking</option>
+            <option value="11">Power on</option>
+            <option value="12">Line dismantling</option>
+            <option value="13">Work with a wrapping machine</option>
+            <option value="14">Neutralization work</option>
+            <option value="15">Strage of chemicals</option>
+            <option value="16">Moving materials(Not heavy)</option>
+            <option value="17">Solid-phase raw material input work</option>
+            <option value="18"></option>
+            <option value="19"></option>
+        </select>
+      </div>
+    
+      <div class="process-work">
+        <h2>Work 2</h2>
+        <select id="work2", name="select3">
+            <option value="0">Valve operation</option>
+            <option value="1">Moving heavy objects</option>
+            <option value="2">Cleaning work</option>
+            <option value="3">Work at height</option>
+            <option value="4">Liquid transfer,drainage work</option>
+            <option value="5">Facility management</option>
+            <option value="6">Sampling work</option>
+            <option value="7">Working with lift</option>
+            <option value="8">Walking</option>
+            <option value="9">Traveling on steps or stairways</option>
+            <option value="10">Gauge checking</option>
+            <option value="11">Power on</option>
+            <option value="12">Line dismantling</option>
+            <option value="13">Work with a wrapping machine</option>
+            <option value="14">Neutralization work</option>
+            <option value="15">Strage of chemicals</option>
+            <option value="16">Moving materials(Not heavy)</option>
+            <option value="17">Solid-phase raw material input work</option>
+            <option value="18"></option>
+            <option value="19"></option>
+        </select>
+      </div> 
+
+      <div class="process-work">
+        <h2>Check start</h2>
+        <input id="button" type="button" value="Start">
+      </div>  
+  </form>   
+  </header>
+
+   <div class="main">
+      <div class="copy-container">
+        <h1>Checking regarding consciousness</h1>
+          <ol>
+            <p id="no_thinking">No thinking</p>
+             <input name="radio1" type="radio" value="1" checked> Wrong:1
+             <input name="radio1" type="radio" value="2"> :2 ->
+             <input name="radio1" type="radio" value="3"> :3 Even
+             <input name="radio1" type="radio" value="4"> :4 ->
+             <input name="radio1" type="radio" value="5"> :5 Right
+            <p id="reckless">Reckless</p>
+             <input name="radio2" type="radio" value="1" checked> Wrong:1
+             <input name="radio2" type="radio" value="2"> :2 ->
+             <input name="radio2" type="radio" value="3"> :3 Even
+             <input name="radio2" type="radio" value="4"> :4 ->
+             <input name="radio2" type="radio" value="5"> :5 Right
+            <p id="ignore">Ignore</p>
+             <input name="radio3" type="radio" value="1" checked> Wrong:1
+             <input name="radio3" type="radio" value="2"> :2 ->
+             <input name="radio3" type="radio" value="3"> :3 Even
+             <input name="radio3" type="radio" value="4"> :4 ->
+             <input name="radio3" type="radio" value="5"> :5 Right
+            <p id="no_awareness">No awareness</p>
+             <input name="radio4" type="radio" value="1" checked> Wrong:1
+             <input name="radio4" type="radio" value="2"> :2 ->
+             <input name="radio4" type="radio" value="3"> :3 Even
+             <input name="radio4" type="radio" value="4"> :4 ->
+             <input name="radio4" type="radio" value="5"> :5 Right
+            <p id="lack_of_knowledge">Lack of knowledge</p>
+             <input name="radio5" type="radio" value="1" checked> Wrong:1
+             <input name="radio5" type="radio" value="2"> :2 ->
+             <input name="radio5" type="radio" value="3"> :3 Even
+             <input name="radio5" type="radio" value="4"> :4 ->
+             <input name="radio5" type="radio" value="5"> :5 Right
+            <p id="no_consciousness">No consciousness</p>
+             <input name="radio6" type="radio" value="1" checked> Wrong:1
+             <input name="radio6" type="radio" value="2"> :2 ->
+             <input name="radio6" type="radio" value="3"> :3 Even
+             <input name="radio6" type="radio" value="4"> :4 ->
+             <input name="radio6" type="radio" value="5"> :5 Right
+            <p id="insensitive">Insensitive</p>
+             <input name="radio7" type="radio" value="1" checked> Wrong:1
+             <input name="radio7" type="radio" value="2"> :2 ->
+             <input name="radio7" type="radio" value="3"> :3 Even
+             <input name="radio7" type="radio" value="4"> :4 ->
+             <input name="radio7" type="radio" value="5"> :5 Right
+            <p id="lack_of_interest">Lack of interest</p>
+             <input name="radio8" type="radio" value="1" checked> Wrong:1
+             <input name="radio8" type="radio" value="2"> :2 ->
+             <input name="radio8" type="radio" value="3"> :3 Even
+             <input name="radio8" type="radio" value="4"> :4 ->
+             <input name="radio8" type="radio" value="5"> :5 Right
+            <p id="without_permission">Without permission</p>
+             <input name="radio9" type="radio" value="1" checked> Wrong:1
+             <input name="radio9" type="radio" value="2"> :2 ->
+             <input name="radio9" type="radio" value="3"> :3 Even
+             <input name="radio9" type="radio" value="4"> :4 ->
+             <input name="radio9" type="radio" value="5"> :5 Right
+
+          </ol>
+        <h1>Checking regarding process and work</h1>
+          <ul>
+            <p id="process_check"></p>
+            <input name="radio12" type="radio" value="1" checked> Wrong:1
+            <input name="radio12" type="radio" value="2"> :2 ->
+            <input name="radio12" type="radio" value="3"> :3 Even
+            <input name="radio12" type="radio" value="4"> :4 ->
+            <input name="radio12" type="radio" value="5"> :5 Right
+
+            <p id="work1_check"></p>
+             <input name="radio10" type="radio" value="1" checked> Wrong:1
+             <input name="radio10" type="radio" value="2"> :2 ->
+             <input name="radio10" type="radio" value="3"> :3 Even
+             <input name="radio10" type="radio" value="4"> :4 ->
+             <input name="radio10" type="radio" value="5"> :5 Right
+            <p id="work2_check"></p>
+             <input name="radio11" type="radio" value="1" checked> Wrong:1
+             <input name="radio11" type="radio" value="2"> :2 ->
+             <input name="radio11" type="radio" value="3"> :3 Even
+             <input name="radio11" type="radio" value="4"> :4 ->
+             <input name="radio11" type="radio" value="5"> :5 Reght
+          </ul>
+
+        <h1>Risk of consciousness and work</h1>
+         <div style="width: 600px;">
+          <canvas id="radar-chart"></canvas>
+         </div>
+      </div>
+
+      <div class="contents">
+        <h3 class="section-title">Related occupational injury reports</h3>
+        <div class="contents-item">
+          <img id="photo1" src="reports/00.jpg" 
+           width="300" height="200">
+          <p>Report 1</p>
+        </div>
+        <div class="contents-item">
+          <iframe id="text1" src="reports/00.txt" width="250" height="200"></iframe>
+          <p>Outline of report 1</p>
+        </div>
+        <div class="contents-item">
+          <img id="photo2" src="reports/01.jpg" 
+           width="300" height="200">
+          <p>Report 2</p>
+        </div>
+        <div class="contents-item">
+          <iframe id="text2" src="reports/01.txt" width="250" height="200"></iframe>
+          <p>Outline of report 2</p>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 class="section-title">Inquiry</h3>
+        <p>Mail address</p>
+        <!-- <input>要素を追加してください -->
+        <input>
+        
+        <p>Content of inquiry</p>
+        <!-- <textarea>要素を追加してください -->
+        <textarea></textarea>
+        
+        <p>*Please fill in </p>
+        <!-- <input>要素を追加してください -->
+        <input class="contact-submit" type="submit" value="Send">
+        
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-logo">KY Athletes</div>
+      <div class="footer-list">
+        <ul>
+          <li>Company profile</li>
+          <li>Adoption</li>
+          <li>Inquiry</li>
+        </ul>
+      </div>
+    </div>
+
+  </body>
+
+  <script>
+  //意識のチェックとKYアドバイス　データ
+   var no_thinking_check=["Today's work is a familiar work, so there is no danger","Received an urgent request","There is no danger in working at a height of about 50 cm",
+    "There is no potential danger to work today","I have to work in a hurry today","Safety is ensured if you wear protective goggles","I don't care if it gets clogged",
+    "Adjustment work after updating the device is distracting","When the device moves unexpectedly, it may touch the product etc.","Just before the end of work, I will cut corners",
+    "I'm busy working with time"];
+   var no_thinking_advices=["Review and confirm the operation even if you are accustomed to it.","Make sure to follow the work procedure in an emergency","There is a risk even in a small step, check the your step",
+    "Something that you don't think normally moving, think about what will happen if it moves.","When you are in a hurry, take a break and check your safety.","Make sure there are no gaps when wearing protective goggles",
+    "Leaving the clog is a risk, so consult to somebody if you can improve it.","Be careful when changing the device, as there is an unexpected danger.",
+    "If the device moves unexpectedly, calm down and stop the device.","Stay alert until the end of work and do not take shortcuts. Let's raise the level of consciousness by pointing and calling.",
+    "When you're in a hurry, stay calm and follow the set procedure"];
+
+   var reckless_check=["Today's work must be quick","I think it's better to be more productive at the expence of safety",
+    "If slow down the equipment movement, occupational injuries rarely occur even if touch it.","Close your eyes a little more safely than spending time and effort",
+    "Received an urgent request","I often work in a hurry","There is no occupational injury today","I have to work same as any other person, even if I don't understand a little",
+    "I want to improve work efficiency rather than safety","Some work is efficient but done with the awareness that it is a bit dangerous"];
+   var reckless_advices=["When you are in a hurry, take a break and check your safety.","When an occupational injury occurs, not only you but also others will be unhappy. Keep safety first",
+    "Recognize that even slow movements are powerful enough to destroy a person's body","Time and effort for safety are necessary. Shortcuts lead to accidents",
+    "Make sure to follow the work procedure in an emergency","If you are in a hurry, consult with others and proceed with the work without difficulty.","There is a risk in my mind that I think I'm okay, so once again review whether I'm doing unreasonable work",
+    "Pretending to be understood causes an accident. If you don't understand, be sure to consult with others.","Safety first, keep safety","Leaving danger will cause an accident, give priority to safety, and consult with your boss first."];
+
+   var ignore_check=["Today's work cannot follow the rules and SOP","We believe that production is prioritized over safety",
+    "Sometimes I work outside the designated work area","I don't have to look at the SOP because I can work in my own efficient way","Sometimes work done by multiple people is done by one person",
+    "I do not follow the work procedure because it does not match the actual work","Small dust may be removed without stopping the equipment.",
+    "Sometime I may not use proper jigs and tools","The cutter may be used without protective gloves","Some work is omitted because it takes time"];
+   var ignore_advices=["If you have rules or SOPs that you cannot follow, first consult your boss.","When an occupational injury occurs, not only you but also others will be unhappy. Keep safety first",
+    "Outside the work area is more dangerous, do not enter","SOP is a procedure to ensure safety. There is a risk of losing safety with your own method",
+    "Understand why the work is done by multiple people and follow the work procedure","If the work procedure manual does not match the actual work, first consult with your boss and correct the work procedure manual.",
+    "A little trick will cause a disaster, stop the equipment and deal with it","Work with appropriate jigs and tools","In principle, use of cutters is prohibited, and wear protective gloves when there is a possibility of touching the blade.",
+    "Shortcuts are strictly prohibited, give priority to safety even if it takes time"];
+
+   var no_awareness_check=["Even if other workers violate the rules, I cannot give guidance or caution","Often receive ambiguous instructions",
+   "Even if I violate rule, nobody does not pay attention","There is work that my boss does not understand","Contract workers may not understand what they are doing",
+   "Lack of education for new employees","I don't care even if there are people who do not follow the prescribed work procedure","I work without considering the work skills of coworkers",
+   "I usually don't check the work instructions carefully","There is dangerous place where I have not informed"];
+   var no_awareness_advices=["Recognize that the rules are to ensure safety, and be careful to protect other workers if you find a breach.",
+   "If you receive an ambiguous instruction, do not leave it as it is, but check the contents until you fully understand it.","Violation of rules causes an accident, so be careful not only to protect yourself but also to protect others.",
+   "Fully report, contact, and consult about work content","If they don't understand what they're doing, let them understand it before they work.","New employees often do not feel the danger. Explain from the principle why it is the SOP procedure",
+   "Make them keep the prescribed procedures.Even the slightest stacking can lead to major accidents.","Think about the work skills of coworkers, and pay attention to the behaviours of people with low skills.",
+   "Check work instructions in consideration of work content, safety, and coworker skills.","If you find dangerous place, inform it to concerned people.","Actually, I don't know the property  of the substances I handle"];
+
+   var lack_of_knowledge_check=["I've never seen the SOP of the work I'm doing today","I'm not familiar with today's work","ome work is done without sufficient education",
+   "Insufficient work proficiency of new employees","Lack of knowledge of tools for work","There is work that does not understand the need for protective equipment",
+   "I am not sure what to do when a problem occurs","There is no danger because the equipment  for the work has a safety device and safety is ensured.",
+   "Not aware of which part of the device is dangerous","During repairs and construction, we do not recognize what is off limits inside the building."];
+   var lack_of_knowledge_advices=["There is a danger in the work you are doing in your own way. Follow the SOP.","For unfamiliar work, prepare a helper before starting work.",
+   "Do not do uneducated work","After confirming the skill check for new employees, work according to the skill","Understand the functions of the tools for work",
+   "Check the SOP for the need for protective equipment","Check the troubleshooting procedure before starting work","Imagine what would happen if something move that doesn't seem to move. And don't overconfident in the safety device",
+   "Check with your colleagues about which part of the device is in danger before starting work.","Recognize dangerous areas in the building, including during normal work.","Recognize the property and dangerous of the substance you handle, and work"];
+  
+   var no_consciousness_check=["I often work in haste","It's dangerous to move, but since it doesn't usually move, there are parts that are directly touched.",
+   "There is no way an occupational injury will occur in today's work","I often work in a hurry near the end of work","I do not recognize which parts of the equipment are dangerous",
+   "I do not recognize where parts of the building are off-limits during repairs or construction","I often work in a hurry near my lunch break",
+   "When I start work, I sometimes work in a drowsiness.","I sometime place hand where there is possibility to be pinched",
+   "I work without looking at warning signs or being aware of it","Just before the end of work, the level of consciousness is low awareness due to fatigue",
+   "I force myself to work even when I am not feeling well"];
+   var no_consciousness_advices=["Understand work procedures and precautions when you are in a hurry","Imagine what would happen if something move you thought didn't move. Do not rely too much safety equipment","Thinking you'll be fine is itself a risk, let's think about the safety of your cooperators.",
+   "When you're in a hurry, take a breather and confirm safety","Check with your colleagues to find out which part of the equipment is dangerous before starting work.",
+   "Start work, after recognize dangerous areas in the building, including during normal work.","When you're in a hurry, take a breather and confirm safety","Do not work when you are drowsy, do warm-up exercises, etc., and work after you clear out your drowsy.",
+   "Be aware that the gaps in the equipment or under heavy objects has possibility to be pinched.","Protect yourself by checking the warning sign.",
+   "Take a short break and work when you feel tired","Don't push yourself too hard when you're not feeling well, take a break"];
+
+   var insensitive_check=["I don't usually check the situations of collaborators","Signals to collaborators are often not communicated",
+   "I often forget necessary cues","There are materials and parts that are not organized","Leave small resin scattering",
+   "Tools may be placed in the wrong place","Do not clearly show restricted areas","I don't usually check the situations of collaborators",
+   "Not concerned about bumps in work area","Even if the warning sign is dirty, I leave it"];
+   var insensitive_advices=["Ensure the safety of co-workers too","Get consensus with your collaborators by  exchanging cues",
+   "Misunderstandings lead to accidents, be sure to give cues","A disorganized situation poses a danger not only to you but also to other workers. sort it out immediately",
+   "Orderliness is the basis of safety","Keep tools in right place","Let everyone know the no-go zone","Ensure the safety of co-workers too",
+   "Be careful of hazards around you, such as protrusions in the work area.","Keep warning signs visible at all times"];
+
+   var lack_of_interest_check=["SOP update delays due to tight production","Some work does not require the wearing of protective equipment due to poor workability.",
+   "Work procedure is missing in change management confirmation items","There is work for which SOP has not been created for low-frequency work","Production is tight and safety measures delay",
+   "Some work does not require the wearing of protective equipment due to poor workability.","Sometime safety patrol can be neglected",
+   "Even if the warning sign is dirty, I leave it","There is work in unstable place"];
+   var lack_of_interest_advices=["First, consult with your boss and ask them to issue a temporary work order.","First of all, consult with your boss and review the work method with safety as the top priority.",
+   "If you want to change something, make sure that you can follow the work procedure up to now.","First, consult with your boss and create a work instruction or SOP even for infrequent work.",
+   "Talk to your boss first and ask them to prioritize workplace safety","First of all, consult with your boss and review the work method with safety as the top priority.",
+   "Recognize that safety patrols are an important occupational injury prevention activity that discovers equipment abnormalities and dangers to people.","Keep warning signs visible at all times",
+   "Review work in unstable places"];
+
+   var without_permission_check=["Work may be carried out without notification of work change","As long as I follow the instructions to some extent, I can change them.",
+   "I don't inform minor work changes due to take a time","I actually have my own way of working.","When the instructions are ambiguous, I can freely change the work content",
+   "The safety cover can be opened freely to work."];
+   var without_permission_advices=["Report and consult with superiors when work changes","If there are any changes from the instructions, be sure to notify",
+   "Even minor changes for you can affect others. Consult and discuss even trifles","Discuss any necessary changes with your supervisor. Evaluate safety and change",
+   "If the instructions are ambiguous, check the contents until you can definitely understand.","Recognize that the act of opening the safety cover exposes the dangerous part."];
+
+  //作業のチェックとKYアドバイス データ
+    var ii1=0;
+    var ii2=0;
+    var wk1=0;
+    var wk2=0;
+
+    var process =["GL1","GL2","GL4","GL5","GL6","GL7","GL8","GD7","M-3110","M-302","VP-4500","PE","Others"];
+    var work = ["Valve operation","Moving heavy objects","Cleaning work","Work at height","Liquid transfer,drainage work",
+      "Facility management","Sampling work","Working with lift","Walking","Traveling on ramps, steps or stairways",
+      "Gauge checking","Power on","Line dismantling","Wrapping work with a wrapping machine","Neutralization work","Strage of chemicals",
+      "Moving materials(Not heavy)","Solid-phase raw material input work","xxx","xxx"];
+
+    var process_check=[["GL1"],["GL2"],["GL4"],["GL5"],["GL6"],["GL7"],["GL8"],["GD7"],["M-3110"],["M-302"],["VP-4500"],["PE"],["Others"]];
+    var process_advices=[[],[],[],[],[],[],[],[],[],[],[],[],[]];  
+
+    var work_check=[["Valve"],
+    ["I plan to go to the materials warehouse to pick up parts.","Parts without handles may be moved in an unreasonable posture",
+    "Heavy objects may be removed or moved in unstable places such as on a stepladder.","For familiar work performed by multiple people, each person should do their own work properly.",
+    "Sometimes I pick up a bucket of water without thinking","Sometimes I move drum cans manually by one person.",
+    "When moving heavy objects with a crane, I am not conscious of where they may be pinched.","Work may be performed without using a fall prevention jig for heavy parts.",
+    "Not checking my feet when moving heavy items such as pallets by hand","When lifting and moving a heavy object, I may unconsciously put my hand under the heavy object.",
+    "Not being aware of the danger of pinching fingers when arranging drums on a pallet","When working with a drum porter, I sometimes leave the workplace with the drum set.",
+    "Even heavy objects (more than 20 kg) may be moved manually","Sometime move objects in an unreasonable posture",
+    "Inexperienced personnel may suddenly lift and move heavy items (more than 20 kg).","Sometimes I lift an 18kg pail up to shoulder height to subdivide the product.",
+    "If it is 5 gallon (about 20 kg), it can be moved without protective equipment"],
+    ["Cleaning"],
+    ["Work at height"],
+    ["The influence of detonation gas is not considered when adding organic solvent.","Work methods for safely draining residual liquid from pipes have not been considered.",
+    "I often open the flange (loosen the bolt) without being aware of anything.","I do not predict the danger that the hose will run wild when draining liquid under a slightly pressurized situation.",
+    "When cleaning the strainer, the open/closed state of the valve from the source valve to the drain destination is not checked.","In unsteady operation, the work procedure may be changed during work progress.",
+    "Today, I operate valves that are not normally touched.","There are places where hazardous materials (harmful substances) overflow if the operation procedure is incorrect.",
+    "Sometimes forgetting to tell the next shift that the drain valve was opened during non-regular work","Actually, I don't know well the physical properties of the substances I handle",
+    "Actually, I don't understand the flow of piping","A single valve is used to cut ties in preparation for construction.",
+    "When preparing for construction, a liquid sealing state may be created.","Not checking whether the valve is open or closed before starting the pump",
+    "Tygon tubes used for liquid transfer work are not replaced regularly","Not conscious of whether the syringes, filters, used in the work are appropriate",
+    "When transferring liquid, I don't consider the possibility of the liquid splashing on the face"],
+    ["Facility management"],
+    ["Sampling work"],
+    ["When working after getting off the forklift, sometimes leave the fork is raised.","When backing up the forklift, sometimes backs up without checking the rear.",
+     "I don't care where the pallets are placed"],
+    ["Occupational injuries do not occur just by walking on site","Sometime I scurry around the workplace",
+    "Drainage pits and ditches that are normally covered sometime be left open","I don't mind if there is a small protrusion in the aisle",
+    "Sometime I use shortcuts that are not aisle","Sometime I may look away while walking in site",
+    "I don't care even if there are somethings in the aisle that don't usually put"],
+    ["Going up and down stairs without handrails","Sometimes using stairs with both hands occupied by luggage",
+    "I don't feel danger when I go down two or three steps.","I think I'm safe if I have a handrail.",
+    "Sometime I may run down stairs or skip one step","When descending a ladder, you become relaxed as you approach the final step.",
+    "Not conscious of falling when using stairs","I will never been injured on the stairs",
+    "I don't care even if step stoppers or non-slip staircases are broken"],
+    ["Gauge checking"],
+    ["Power on"],
+    ["Line dismantling"],
+    ["Wrapping work with a wrapping machine","Neutralization work"],
+    ["Neutralization work"],
+    ["Strage of chemicals"],
+    ["Doing work that repeats the same action","The condition of the container containing the raw material is not checked when the raw material is manually added.",
+    "Not wearing protective glasses when disposing of chemical materials","I don't know the dangers of the substances I handle in my work"],
+    ["Solid-phase raw material input work"]];
+    
+    var KY_advices=[["Valve"],
+    ["In an unorganized warehouse, materials may interfere with each other and heavy items may fall. Be careful not to bump materials, and always keep them neat and tidy","When moving heavy objects, install a tipping prevention jig with a handle.",
+    "Prohibit the use of stepladders when working with heavy objects, and install suitable scaffolding.","When working with two or more people, get into the habit of (1) talking to each other (2) checking the other person's movement and situation",
+    "Work that requires frequent slouching can cause lower back pain. Wear a protect belt for back pain","When moving drum cans, use a moving tool such as a drum carrier.",
+    "When operating a crane, be aware of possible pinch points","When removing heavy equipment parts, take measures such as using fall prevention jigs.",
+    "When moving heavy objects by hand, make sure there are no steps or protrusions that could tip over.","When lifting and moving heavy objects, remember to work in a position where your hands will not get caught.",
+    "When arranging drums on a pallet, be careful that you are caught in the gaps between the drums.","When leaving the workplace, return the drum porter to the designated place without leaving it unfinished.",
+    "Use appropriate tools (drum porters, etc.) to move heavy objects (more than 20 kg)","Working in an unreasonable posture can cause injury, so first report it to your superior before you get hurt.",
+    "If an inexperienced person moves a heavy object (more than 20 kg) forcibly, he/she will be injured, so ask an expert to do the work.","The work of lifting an 18kg pail to shoulder height may cause injury. Review the location of equipment.",
+    "Even if you are confident in your physical strength, wear protective equipment while working. Pay particular attention to your posture when performing repetitive movements."],
+    ["Cleaning"],
+    ["Work at height"],
+    ["When handling flammable substances, take measures against static electricity such as grounding and limiting the flow rate, and work under a nitrogen atmosphere outside the explosion limit.","Assuming the possibility of residual liquid overflowing during the liquid removal work in the pipe, prepare an unsteady work instruction.",
+    "When opening the flange, assume the possibility that the residual liquid will spurt out, so loosen the bolts farthest from you first.","When draining liquid with a hose under a slightly pressurized situation, check the valve operation procedure so that pressure is not applied to the hose at once.",
+    "Before operating the valve for liquid drainage, check the line from the source valve to the transfer destination (valve open/close status) by direct checking.","If the work is changed, perform hazard prediction again and keep the workers away until safety is ensured.",
+    "Assuming that the valve will not open/close completely, check the status of the peripheral equipment in advance, and assume that the liquid level will change as the valve opens and closes.","Check in advance how to deal with overflow problems before starting work.",
+    "When performing non-regular operations, be sure to pass them on to the next shift.","Recognize the physical properties and dangers of the materials you are handling, and work after knowing how to deal with dangerous materials.",
+    "Understand the flow of piping with P&ID, and work by recognizing where the dangerous parts of the equipment are.","Valves should be leaky, and hemming should be done with blind flanges.",
+    "There is a danger that the enclosed liquid will spurt out due to thermal expansion, so please remove the liquid in advance.","Before starting the pump, check the open/closed status of the valves to eliminate the risk of being exposure to liquid.",
+    "Replace the Tygon tube used for liquid transfer regularly (every 30 days)","Prepare appropriate tools and materials before starting work following the procedure manual.",
+    "When transferring liquids, be aware of how to minimize the risk of exposure (wearing appropriate safety glasses)"],
+    ["Facility management"],
+    ["Sampling work"],
+    ["Be aware of the risk of tripping if you leave the fork up","When backing up with a forklift, be sure to check behind",
+    "Recognize that forklift operators often trip over pallets and optimize pallet placement"],
+    ["If the floor is slippery, even walking fast can lead to a fall accident, so check for slippery areas.","There is a danger of tipping over or colliding when scurrying, so walk calmly even if you are in a hurry.",
+    "If it is necessary to be left open the drainage pit or ditches, take measures to prevent falling.","There is a danger of falling even with a small protrusion, so take measures to eliminate protrusions",
+    "As a general rule, walking is prohibited outside the aisles. And recognize of the danger of falling and crashing.","Be aware of the dangers lurking at the manufacturing site, and walk with caution in front of you, under your feet, and above your head.",
+    "There is a danger of stumbling if you put somethings in the aisle. If it interferes with the work flow line, display a warning at that location."],
+    ["Recognize that there are many occupational injuries on the stairs, and be sure to hold the handrail","When using stairs, keep at least one hand free so that you can hold the handrail",
+    "There is a danger of missing your steps even with 2 or 3 steps, so watch your step","Even if you have a handrail, there is a risk of injury. Especially be careful when getting off.",
+    "Even if you are in a hurry, do not run down the stairs and use each step correctly.","When descending a ladder, do not relax until you are on the ground",
+    "When using stairs, pay attention to the steps under your feet and be sure to hold the handrail.","Be aware that there are many falls on the stairs,  watch your feet, and hold the handrail.",
+    "If there is a problem with the step stoppers or non-slip steps, repair it immediately as there is a danger of falling."],
+    ["Gauge checking"],
+    ["Power on"],
+    ["Line dismantling"],
+    ["Wrapping work with a wrapping machine","Neutralization work"],
+    ["Neutralization work"],
+    ["Strage of chemicals"],
+    ["Warm up before work, check your physical condition, and take a break before you feel tired","When adding raw materials manually, check that there are no cracks, tears, or other abnormalities in the container or bag in order to minimize the risk of contact with the raw materials or exposure to liquid.",
+    "Wear eye protection to minimize the risk of contact with hazardous materials in your waste","Recognize the dangers of substances handled in the work with SDS, and wear appropriate protective equipment (Tyvek suit) following to the procedure manual."],
+    ["Solid-phase raw material input work"]];
+
+  //初期表示
+   //意識のチェック
+   var ntl= no_thinking_check.length; 
+   var nt=Math.floor(Math.random()*ntl); 
+    document.getElementById("no_thinking").innerHTML = 'No thinking:' + no_thinking_check[nt];
+ 
+   var rl= reckless_check.length; 
+   var rec=Math.floor(Math.random()*rl); 
+    document.getElementById("reckless").innerHTML = 'Reckless:' + reckless_check[rec];
+  
+   var il= ignore_check.length; 
+   var ign=Math.floor(Math.random()*il); 
+    document.getElementById("ignore").innerHTML = 'Ignore:' + ignore_check[ign];
+
+   var nal= no_awareness_check.length; 
+   var noa=Math.floor(Math.random()*nal); 
+    document.getElementById("no_awareness").innerHTML = 'No awareness:' + no_awareness_check[noa];
+  
+   var lal= lack_of_knowledge_check.length; 
+   var lac=Math.floor(Math.random()*lal); 
+    document.getElementById("lack_of_knowledge").innerHTML = 'Lack of knowledge:' + lack_of_knowledge_check[lac];
+  
+   var nol= no_consciousness_check.length; 
+   var noc=Math.floor(Math.random()*nol); 
+    document.getElementById("no_consciousness").innerHTML = 'No consciouness:' + no_consciousness_check[noc];
+   
+   var inl= insensitive_check.length;
+   var ins=Math.floor(Math.random()*inl);
+    document.getElementById("insensitive").innerHTML = 'Insensitive:' + insensitive_check[ins];
+  
+   var lol= lack_of_interest_check.length;
+   var loi=Math.floor(Math.random()*lol);
+    document.getElementById("lack_of_interest").innerHTML = 'Lack of interest:' + lack_of_interest_check[loi];
+
+   var wil= without_permission_check.length;
+   var wit=Math.floor(Math.random()*wil);
+    document.getElementById("without_permission").innerHTML = 'Without permission:' + without_permission_check[wit];
+
+   //作業のチェック
+    document.getElementById("process_check").innerHTML = process[0] + ':' + process_check[0][0];
+    document.getElementById("work1_check").innerHTML = work[0] + ':' + work_check[0][0];
+    document.getElementById("work2_check").innerHTML = work[0] + ':' + work_check[0][1];
+    var photoElement1 = document.getElementById('photo1');
+    var photoElement2 = document.getElementById('photo2');
+  
+  //工程・作業変更
+    form.addEventListener('change', changed);
+    function changed(){
+      var process1 = document.getElementById("process").value
+      var work1 = document.getElementById("work1").value;
+      var work2 = document.getElementById("work2").value;
+
+      var check1_items= work_check[work1];
+      var l1=work_check[work1].length;
+      var i1=Math.floor(Math.random() * l1);
+      wk1=work1;
+      ii1=i1;
+
+      var check2_items= work_check[work2];
+      var l2=work_check[work2].length;
+      var i2=Math.floor(Math.random() * l2);
+      wk2=work2;
+      ii2=i2;
+
+      document.getElementById("process_check").innerHTML = process[process1] + ':';
+      document.getElementById("work1_check").innerHTML = work[work1] + ':'+ check1_items[i1];
+      document.getElementById("work2_check").innerHTML = work[work2] + ':'+ check2_items[i2];
+    };
+
+  //チェックスタート　クリック後の処理
+   //KYアドバイス表示
+    button.addEventListener('click', getValue);
+    function getValue(){
+      document.getElementById("no_thinking").innerHTML = 'KY advice:'+ no_thinking_advices[nt];
+      document.getElementById("reckless").innerHTML = 'KY advice:' + reckless_advices[rec];
+      document.getElementById("ignore").innerHTML = 'KY advice:' + ignore_advices[ign];
+      document.getElementById("no_awareness").innerHTML = 'KY advice:' + no_awareness_advices[noa];
+      document.getElementById("lack_of_knowledge").innerHTML = 'KY advice:' + lack_of_knowledge_advices[lac];
+      document.getElementById("no_consciousness").innerHTML = 'KY advice:' + no_consciousness_advices[noc];
+      document.getElementById("insensitive").innerHTML = 'KY advice:' + insensitive_advices[ins];
+      document.getElementById("lack_of_interest").innerHTML = 'KY advice:' + lack_of_interest_advices[loi];
+      document.getElementById("without_permission").innerHTML = 'KY advice:' + without_permission_advices[wit];
+ 
+      document.getElementById("work1_check").innerHTML = /*work[wk1] +*/ 'KY advice:'+ KY_advices[wk1][ii1];
+      document.getElementById("work2_check").innerHTML = /*work[wk2] +*/ 'KY advice:'+ KY_advices[wk2][ii2];
+    
+   //労災情報の表示
+      var photoElement1 = document.getElementById('photo1');
+      var textElement1 = document.getElementById('text1');
+      var photoElement2 = document.getElementById('photo2');
+      var textElement2 = document.getElementById('text2');
+
+      var process = document.getElementById("process").value;
+      var work1 = document.getElementById("work1").value;
+      var work2 = document.getElementById("work2").value;
+      
+      if (work1==0){
+        wk1n=38;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==1){
+        wk1n=43;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==2){
+        wk1n=5;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==3){
+        wk1n=7;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==4){
+        wk1n=13;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==5){
+        wk1n=20;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==6){
+        wk1n=7;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==7){
+        wk1n=11;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==8){
+        wk1n=7;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==9){
+        wk1n=7;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==10){
+        wk1n=12;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==11){
+        wk1n=4;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_1"
+      } else if(work1==12){
+        wk1n=1;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_2"
+      } else if(work1==13){
+        wk1n=1;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_3"
+      } else if(work1==14){
+        wk1n=1;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_4"
+      } else if(work1==15){
+        wk1n=1;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_5"
+      } else if(work1==16){
+        wk1n=1;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_6"
+      } else if(work1==17){
+        wk1n=6;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_7"
+      } else if(work1==18){
+        wk1n=1;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_8"
+      } else if(work1==19){
+        wk1n=2;
+        wk1r=Math.floor(Math.random() * wk1n);
+        work1="1_9"
+      }
+
+      var photo1 = 'Reports/'+ work1 + wk1r +'.jpg';
+      var text1 = 'Reports/'+ work1 + wk1r +'.txt';
+
+      if (work2==0){
+        wk2n=38;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==1){
+        wk2n=43;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==2){
+        wk2n=5;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==3){
+        wk2n=7;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==4){
+        wk2n=13;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==5){
+        wk2n=20;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==6){
+        wk2n=7;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==7){
+        wk2n=11;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==8){
+        wk2n=7;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==9){
+        wk2n=7;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==10){
+        wk2n=12;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==11){
+        wk2n=4;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_1"
+      } else if(work2==12){
+        wk2n=1;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_2"
+      } else if(work2==13){
+        wk2n=1;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_3"
+      } else if(work2==14){
+        wk2n=1;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_4"
+      } else if(work2==15){
+        wk2n=1;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_5"
+      } else if(work2==16){
+        wk2n=1;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_6"
+      } else if(work2==17){
+        wk2n=6;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_7"
+      } else if(work2==18){
+        wk2n=1;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_8"
+      } else if(work2==19){
+        wk2n=2;
+        wk2r=Math.floor(Math.random() * wk2n);
+        work2="1_9"
+      }
+      
+      var photo2 = 'Reports/'+ work2 + wk2r +'.jpg';
+      var text2 = 'Reports/'+ work2 + wk2r +'.txt';
+
+      photoElement1.src=photo1;
+      textElement1.src=text1;
+      photoElement2.src=photo2;
+      textElement2.src=text2;
+    
+    //意識グラフ表示
+     //選択データ取得
+    var data1;
+    var ele = document.getElementsByName('radio1');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data1=ele[i].value;
+      }
+     };
+
+    var data2;
+    var ele = document.getElementsByName('radio2');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data2=ele[i].value;
+      }
+     };
+
+    var data3;
+    var ele = document.getElementsByName('radio3');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data3=ele[i].value;
+      }
+     };
+
+    var data4;
+    var ele = document.getElementsByName('radio4');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data4=ele[i].value;
+      }
+     };
+
+    var data5;
+    var ele = document.getElementsByName('radio5');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data5=ele[i].value;
+      }
+     }; 
+
+    var data6;
+    var ele = document.getElementsByName('radio6');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data6=ele[i].value;
+      }
+     };
+
+    var data7;
+    var ele = document.getElementsByName('radio7');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data7=ele[i].value;
+      }
+     };
+
+    var data8;
+    var ele = document.getElementsByName('radio8');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data8=ele[i].value;
+      }
+     };
+
+    var data9;
+    var ele = document.getElementsByName('radio9');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data9=ele[i].value;
+      }
+     };
+
+    var data10;
+    var ele = document.getElementsByName('radio10');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data10=ele[i].value;
+      }
+     };
+    
+    var data11;
+    var ele = document.getElementsByName('radio11');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data11=ele[i].value;
+      }
+     };
+    
+     //グラフの設定
+    data = [data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11];
+    const ctx = document.getElementById('radar-chart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['No thinking', 'Leckless', 'Ignore', 'No awareness', 'Lack of knowledge', 'No consciouness', 'Insensitive', 'Lack of interest', 'Without permission', work[wk1], work[wk2]],
+          datasets: [{
+            label: 'Magnitude of risk',
+            data: data,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+						min: 0,
+						max: 5,
+						stepSize: 1
+            }
+          }
+        }
+      });
+    
+    }
+
+  </script>
+</html>
