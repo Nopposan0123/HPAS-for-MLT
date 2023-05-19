@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hazard prediction assist sysytem</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <style>
+      canvas{
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+      }
+    
+      body {
+  margin: 0 auto;
+  font-family: "Avenir Next";
+}
+li{
+  font-size: 10px;
+}
+.process-work {
+ background-color: #b0e4f7;
+ user-select: auto;
+ padding:2px;
+ font-size: 5px;
+ float:left;
+}
+
+.canvas{
+  width:100%;
+}
+
+.header{
+  background-color: #26d0b1;
+  border:2px solid rgb(182, 222, 38);
+  color: #0b0b0b;
+  width:100%;
+  height:43px;
+  position: fixed;
+}
+
+.header-logo {
+  font-size: 30px;
+  padding: 0px;
+}
+
+.header-list li {
+   padding: 0px ;
+}
+
+.form{
+  width:100%;
+  height:40px;
+  background-color: #81c9f9;
+}
+
+.main {
+  width:100%;
+  padding: 90px 0px;
+  float:left;
+}
+
+.copy-container{
+  font-size: 90%;
+}
+
+.copy-container h1 {
+  font-size: 20px;
+}
+
+.copy-container h2 {
+  font-size: 0px;
+}
+
+.copy-container span {
+  color: #ff4a4a;
+}
+
+.contents {
+  height: 500px;
+  margin-top: 10px;
+}
+
+.section-title {
+  border-bottom: 2px solid #dee7ec;
+  font-size: 28px;
+  padding-bottom: 15px;
+  margin-bottom: 50px;
+}
+
+.contents-item {
+  float: left;
+  margin-right: 10px;
+}
+
+.contents-item p {
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+.contact-form {
+  padding-top: 200px;
+}
+
+/* inputとtextareaのCSSを指定してください */
+.contact-form input{
+  width:400px;
+  margin-top:10px;
+  margin-bottom:30px;
+  padding:10px;
+  font-size:18px;
+  border:1px solid #dee7ec;
+}
+
+.contact-form textarea{
+  width:400px;
+  margin-top:10px;
+  margin-bottom:30px;
+  padding:10px;
+  font-size:18px;
+  border:1px solid #dee7ec;
+}
+
+/* contact-submitのCSSを指定してください */
+.contact-submit{
+  background-color:#dee7ec;
+  color:#889eab;
+}
+
+.footer {
+  background-color: #674a2f;
+  color: #fff;
+  width:600px;
+  height:120px;
+  padding: 10px;
+  float:left;
+}
+
+.footer-logo {
+  float: left;
+  font-size: 50px;
+}
+
+.footer-list {
+  float: right;
+}
+
+.footer-list li {
+  padding-bottom: 20px;
+}
+    </style>
+  </head>
+  
+  <body>
+  <header class="header">
+      <div class="header-logo">Hazard prediction assist system</div>
+
+  <form name="form">
+    <div class="process-work">
+        <h2>Process</h2>
+        <select id="process">
+            <option value="0">GL-1</option>
+            <option value="1">GL-2</option>
+            <option value="2">GL-4</option>
+            <option value="3">GL-5</option>
+            <option value="4">GL-6</option>
+            <option value="5">GL-7</option>
+            <option value="6">GL-8</option>
+            <option value="7">GD-7</option>
+            <option value="8">M-3110</option>
+            <option value="9">M-302</option>
+            <option value="10">VP-4500</option>
+            <option value="11">PE</option>
+            <option value="12">Entire plant</option>
+            <option value="13">Warehouse</option>
+        </select>
+    </div>
+
+    <div class="process-work">
+        <h2>Work 1</h2>
+        <select id="work1", name="select2">
+            <option value="0">Valve operation</option>
+            <option value="1">Moving heavy objects</option>
+            <option value="2">Cleaning work</option>
+            <option value="3">Work at height</option>
+            <option value="4">Liquid transfer,drainage work</option>
+            <option value="5">Facility management</option>
+            <option value="6">Sampling work</option>
+            <option value="7">Working with lift</option>
+            <option value="8">Walking</option>
+            <option value="9">Traveling on steps or stairways</option>
+            <option value="10">Gauge checking</option>
+            <option value="11">Power on</option>
+            <option value="12">Line dismantling</option>
+            <option value="13">Work with a wrapping machine</option>
+            <option value="14">Neutralization work</option>
+            <option value="15">Strage of chemicals</option>
+            <option value="16">Moving materials(Not heavy)</option>
+            <option value="17">Solid-phase raw material input work</option>
+            <option value="18"></option>
+            <option value="19"></option>
+        </select>
+      </div>
+    
+      <div class="process-work">
+        <h2>Work 2</h2>
+        <select id="work2", name="select3">
+            <option value="0">Valve operation</option>
+            <option value="1">Moving heavy objects</option>
+            <option value="2">Cleaning work</option>
+            <option value="3">Work at height</option>
+            <option value="4">Liquid transfer,drainage work</option>
+            <option value="5">Facility management</option>
+            <option value="6">Sampling work</option>
+            <option value="7">Working with lift</option>
+            <option value="8">Walking</option>
+            <option value="9">Traveling on steps or stairways</option>
+            <option value="10">Gauge checking</option>
+            <option value="11">Power on</option>
+            <option value="12">Line dismantling</option>
+            <option value="13">Work with a wrapping machine</option>
+            <option value="14">Neutralization work</option>
+            <option value="15">Strage of chemicals</option>
+            <option value="16">Moving materials(Not heavy)</option>
+            <option value="17">Solid-phase raw material input work</option>
+            <option value="18"></option>
+            <option value="19"></option>
+        </select>
+      </div> 
+
+      <div class="process-work">
+        <h2>Check start</h2>
+        <input id="button" type="button" value="Start">
+      </div>  
+  </form>   
+  </header>
+
+   <div class="main">
+      <div class="copy-container">
+        <h1>Checking regarding consciousness</h1>
+          <ol>
+            <p id="no_thinking">No thinking</p>
+             <input name="radio1" type="radio" value="1" checked> Wrong:1
+             <input name="radio1" type="radio" value="2"> :2 ->
+             <input name="radio1" type="radio" value="3"> :3 Even
+             <input name="radio1" type="radio" value="4"> :4 ->
+             <input name="radio1" type="radio" value="5"> :5 Right
+            <p id="reckless">Reckless</p>
+             <input name="radio2" type="radio" value="1" checked> Wrong:1
+             <input name="radio2" type="radio" value="2"> :2 ->
+             <input name="radio2" type="radio" value="3"> :3 Even
+             <input name="radio2" type="radio" value="4"> :4 ->
+             <input name="radio2" type="radio" value="5"> :5 Right
+            <p id="ignore">Ignore</p>
+             <input name="radio3" type="radio" value="1" checked> Wrong:1
+             <input name="radio3" type="radio" value="2"> :2 ->
+             <input name="radio3" type="radio" value="3"> :3 Even
+             <input name="radio3" type="radio" value="4"> :4 ->
+             <input name="radio3" type="radio" value="5"> :5 Right
+            <p id="no_awareness">No awareness</p>
+             <input name="radio4" type="radio" value="1" checked> Wrong:1
+             <input name="radio4" type="radio" value="2"> :2 ->
+             <input name="radio4" type="radio" value="3"> :3 Even
+             <input name="radio4" type="radio" value="4"> :4 ->
+             <input name="radio4" type="radio" value="5"> :5 Right
+            <p id="lack_of_knowledge">Lack of knowledge</p>
+             <input name="radio5" type="radio" value="1" checked> Wrong:1
+             <input name="radio5" type="radio" value="2"> :2 ->
+             <input name="radio5" type="radio" value="3"> :3 Even
+             <input name="radio5" type="radio" value="4"> :4 ->
+             <input name="radio5" type="radio" value="5"> :5 Right
+            <p id="no_consciousness">No consciousness</p>
+             <input name="radio6" type="radio" value="1" checked> Wrong:1
+             <input name="radio6" type="radio" value="2"> :2 ->
+             <input name="radio6" type="radio" value="3"> :3 Even
+             <input name="radio6" type="radio" value="4"> :4 ->
+             <input name="radio6" type="radio" value="5"> :5 Right
+            <p id="insensitive">Insensitive</p>
+             <input name="radio7" type="radio" value="1" checked> Wrong:1
+             <input name="radio7" type="radio" value="2"> :2 ->
+             <input name="radio7" type="radio" value="3"> :3 Even
+             <input name="radio7" type="radio" value="4"> :4 ->
+             <input name="radio7" type="radio" value="5"> :5 Right
+            <p id="lack_of_interest">Lack of interest</p>
+             <input name="radio8" type="radio" value="1" checked> Wrong:1
+             <input name="radio8" type="radio" value="2"> :2 ->
+             <input name="radio8" type="radio" value="3"> :3 Even
+             <input name="radio8" type="radio" value="4"> :4 ->
+             <input name="radio8" type="radio" value="5"> :5 Right
+            <p id="without_permission">Without permission</p>
+             <input name="radio9" type="radio" value="1" checked> Wrong:1
+             <input name="radio9" type="radio" value="2"> :2 ->
+             <input name="radio9" type="radio" value="3"> :3 Even
+             <input name="radio9" type="radio" value="4"> :4 ->
+             <input name="radio9" type="radio" value="5"> :5 Right
+
+          </ol>
+        <h1>Checking regarding process and work</h1>
+          <ul>
+            <p id="process_check"></p>
+            <input name="radio12" type="radio" value="1" checked> Recognize:1
+            <input name="radio12" type="radio" value="2"> :2 ->
+            <input name="radio12" type="radio" value="3"> :3 Even
+            <input name="radio12" type="radio" value="4"> :4 ->
+            <input name="radio12" type="radio" value="5"> :5 Unknown
+
+            <p id="work1_check"></p>
+             <input name="radio10" type="radio" value="1" checked> Wrong:1
+             <input name="radio10" type="radio" value="2"> :2 ->
+             <input name="radio10" type="radio" value="3"> :3 Even
+             <input name="radio10" type="radio" value="4"> :4 ->
+             <input name="radio10" type="radio" value="5"> :5 Right
+            <p id="work2_check"></p>
+             <input name="radio11" type="radio" value="1" checked> Wrong:1
+             <input name="radio11" type="radio" value="2"> :2 ->
+             <input name="radio11" type="radio" value="3"> :3 Even
+             <input name="radio11" type="radio" value="4"> :4 ->
+             <input name="radio11" type="radio" value="5"> :5 Reght
+          </ul>
+
+        <h1>Risk of consciousness and work</h1>
+         <div style="width: 600px;">
+          <canvas id="radar-chart"></canvas>
+         </div>
+      </div>
+
+      <div class="contents">
+        <h3 class="section-title">Related occupational injury reports</h3>
+        <div class="contents-item">
+          <img id="photo1" src="reports/00.jpg" 
+           width="300" height="200">
+          <p>Report 1</p>
+        </div>
+        <div class="contents-item">
+          <iframe id="text1" width="280" height="200"></iframe>
+          <p>Outline of report 1</p>
+        </div>
+        <div class="contents-item">
+          <img id="photo2" src="reports/01.jpg"  width="300" height="200">
+          <p>Report 2</p>
+        </div>
+        <div class="contents-item">
+          <iframe id="text2" width="280" height="200"></iframe>
+          <p>Outline of report 2</p>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 class="section-title">Inquiry</h3>
+        <p>Mail address</p>
+        <!-- <input>要素を追加してください -->
+        <input>
+        
+        <p>Content of inquiry</p>
+        <!-- <textarea>要素を追加してください -->
+        <textarea></textarea>
+        
+        <p>*Please fill in </p>
+        <!-- <input>要素を追加してください -->
+        <input class="contact-submit" type="submit" value="Send">
+        
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-logo">KY Athletes</div>
+      <div class="footer-list">
+        <ul>
+          <li>Company profile</li>
+          <li>Adoption</li>
+          <li>Inquiry</li>
+        </ul>
+      </div>
+    </div>
+
+  </body>
+
+  <script>
+  //意識のチェックとKYアドバイス　データ
+   var no_thinking_check=["Today's work is a familiar work, so there is no danger","Received an urgent request","There is no danger in working at a height of about 50 cm",
+    "There is no potential danger to work today","I have to work in a hurry today","Safety is ensured if you wear protective goggles","I don't care if it gets clogged",
+    "Adjustment work after updating the device is distracting","When the device moves unexpectedly, it may touch the product etc.","Just before the end of work, I will cut corners",
+    "I'm busy working with time"];
+   var no_thinking_advices=["Review and confirm the operation even if you are accustomed to it.","Make sure to follow the work procedure in an emergency","There is a risk even in a small step, check the your step",
+    "Something that you don't think normally moving, think about what will happen if it moves.","When you are in a hurry, take a break and check your safety.","Make sure there are no gaps when wearing protective goggles",
+    "Leaving the clog is a risk, so consult to somebody if you can improve it.","Be careful when changing the device, as there is an unexpected danger.",
+    "If the device moves unexpectedly, calm down and stop the device.","Stay alert until the end of work and do not take shortcuts. Let's raise the level of consciousness by pointing and calling.",
+    "When you're in a hurry, stay calm and follow the set procedure"];
+
+   var reckless_check=["Today's work must be quick","I think it's better to be more productive at the expence of safety",
+    "If slow down the equipment movement, occupational injuries rarely occur even if touch it.","Close your eyes a little more safely than spending time and effort",
+    "Received an urgent request","I often work in a hurry","There is no occupational injury today","I have to work same as any other person, even if I don't understand a little",
+    "I want to improve work efficiency rather than safety","Some work is efficient but done with the awareness that it is a bit dangerous"];
+   var reckless_advices=["When you are in a hurry, take a break and check your safety.","When an occupational injury occurs, not only you but also others will be unhappy. Keep safety first",
+    "Recognize that even slow movements are powerful enough to destroy a person's body","Time and effort for safety are necessary. Shortcuts lead to accidents",
+    "Make sure to follow the work procedure in an emergency","If you are in a hurry, consult with others and proceed with the work without difficulty.","There is a risk in my mind that I think I'm okay, so once again review whether I'm doing unreasonable work",
+    "Pretending to be understood causes an accident. If you don't understand, be sure to consult with others.","Safety first, keep safety","Leaving danger will cause an accident, give priority to safety, and consult with your boss first."];
+
+   var ignore_check=["Today's work cannot follow the rules and SOP","We believe that production is prioritized over safety",
+    "Sometimes I work outside the designated work area","I don't have to look at the SOP because I can work in my own efficient way","Sometimes work done by multiple people is done by one person",
+    "I do not follow the work procedure because it does not match the actual work","Small dust may be removed without stopping the equipment.",
+    "Sometime I may not use proper jigs and tools","The cutter may be used without protective gloves","Some work is omitted because it takes time"];
+   var ignore_advices=["If you have rules or SOPs that you cannot follow, first consult your boss.","When an occupational injury occurs, not only you but also others will be unhappy. Keep safety first",
+    "Outside the work area is more dangerous, do not enter","SOP is a procedure to ensure safety. There is a risk of losing safety with your own method",
+    "Understand why the work is done by multiple people and follow the work procedure","If the work procedure manual does not match the actual work, first consult with your boss and correct the work procedure manual.",
+    "A little trick will cause a disaster, stop the equipment and deal with it","Work with appropriate jigs and tools","In principle, use of cutters is prohibited, and wear protective gloves when there is a possibility of touching the blade.",
+    "Shortcuts are strictly prohibited, give priority to safety even if it takes time"];
+
+   var no_awareness_check=["Even if other workers violate the rules, I cannot give guidance or caution","Often receive ambiguous instructions",
+   "Even if I violate rule, nobody does not pay attention","There is work that my boss does not understand","Contract workers may not understand what they are doing",
+   "Lack of education for new employees","I don't care even if there are people who do not follow the prescribed work procedure","I work without considering the work skills of coworkers",
+   "I usually don't check the work instructions carefully","There is dangerous place where I have not informed"];
+   var no_awareness_advices=["Recognize that the rules are to ensure safety, and be careful to protect other workers if you find a breach.",
+   "If you receive an ambiguous instruction, do not leave it as it is, but check the contents until you fully understand it.","Violation of rules causes an accident, so be careful not only to protect yourself but also to protect others.",
+   "Fully report, contact, and consult about work content","If they don't understand what they're doing, let them understand it before they work.","New employees often do not feel the danger. Explain from the principle why it is the SOP procedure",
+   "Make them keep the prescribed procedures.Even the slightest stacking can lead to major accidents.","Think about the work skills of coworkers, and pay attention to the behaviours of people with low skills.",
+   "Check work instructions in consideration of work content, safety, and coworker skills.","If you find dangerous place, inform it to concerned people.","Actually, I don't know the property  of the substances I handle"];
+
+   var lack_of_knowledge_check=["I've never seen the SOP of the work I'm doing today","I'm not familiar with today's work","ome work is done without sufficient education",
+   "Insufficient work proficiency of new employees","Lack of knowledge of tools for work","There is work that does not understand the need for protective equipment",
+   "I am not sure what to do when a problem occurs","There is no danger because the equipment  for the work has a safety device and safety is ensured.",
+   "Not aware of which part of the device is dangerous","During repairs and construction, we do not recognize what is off limits inside the building."];
+   var lack_of_knowledge_advices=["There is a danger in the work you are doing in your own way. Follow the SOP.","For unfamiliar work, prepare a helper before starting work.",
+   "Do not do uneducated work","After confirming the skill check for new employees, work according to the skill","Understand the functions of the tools for work",
+   "Check the SOP for the need for protective equipment","Check the troubleshooting procedure before starting work","Imagine what would happen if something move that doesn't seem to move. And don't overconfident in the safety device",
+   "Check with your colleagues about which part of the device is in danger before starting work.","Recognize dangerous areas in the building, including during normal work.","Recognize the property and dangerous of the substance you handle, and work"];
+  
+   var no_consciousness_check=["I often work in haste","It's dangerous to move, but since it doesn't usually move, there are parts that are directly touched.",
+   "There is no way an occupational injury will occur in today's work","I often work in a hurry near the end of work","I do not recognize which parts of the equipment are dangerous",
+   "I do not recognize where parts of the building are off-limits during repairs or construction","I often work in a hurry near my lunch break",
+   "When I start work, I sometimes work in a drowsiness.","I sometime place hand where there is possibility to be pinched",
+   "I work without looking at warning signs or being aware of it","Just before the end of work, the level of consciousness is low awareness due to fatigue",
+   "I force myself to work even when I am not feeling well"];
+   var no_consciousness_advices=["Understand work procedures and precautions when you are in a hurry","Imagine what would happen if something move you thought didn't move. Do not rely too much safety equipment","Thinking you'll be fine is itself a risk, let's think about the safety of your cooperators.",
+   "When you're in a hurry, take a breather and confirm safety","Check with your colleagues to find out which part of the equipment is dangerous before starting work.",
+   "Start work, after recognize dangerous areas in the building, including during normal work.","When you're in a hurry, take a breather and confirm safety","Do not work when you are drowsy, do warm-up exercises, etc., and work after you clear out your drowsy.",
+   "Be aware that the gaps in the equipment or under heavy objects has possibility to be pinched.","Protect yourself by checking the warning sign.",
+   "Take a short break and work when you feel tired","Don't push yourself too hard when you're not feeling well, take a break"];
+
+   var insensitive_check=["I don't usually check the situations of collaborators","Signals to collaborators are often not communicated",
+   "I often forget necessary cues","There are materials and parts that are not organized","Leave small resin scattering",
+   "Tools may be placed in the wrong place","Do not clearly show restricted areas","I don't usually check the situations of collaborators",
+   "Not concerned about bumps in work area","Even if the warning sign is dirty, I leave it"];
+   var insensitive_advices=["Ensure the safety of co-workers too","Get consensus with your collaborators by  exchanging cues",
+   "Misunderstandings lead to accidents, be sure to give cues","A disorganized situation poses a danger not only to you but also to other workers. sort it out immediately",
+   "Orderliness is the basis of safety","Keep tools in right place","Let everyone know the no-go zone","Ensure the safety of co-workers too",
+   "Be careful of hazards around you, such as protrusions in the work area.","Keep warning signs visible at all times"];
+
+   var lack_of_interest_check=["SOP update delays due to tight production","Some work does not require the wearing of protective equipment due to poor workability.",
+   "Work procedure is missing in change management confirmation items","There is work for which SOP has not been created for low-frequency work","Production is tight and safety measures delay",
+   "Some work does not require the wearing of protective equipment due to poor workability.","Sometime safety patrol can be neglected",
+   "Even if the warning sign is dirty, I leave it","There is work in unstable place"];
+   var lack_of_interest_advices=["First, consult with your boss and ask them to issue a temporary work order.","First of all, consult with your boss and review the work method with safety as the top priority.",
+   "If you want to change something, make sure that you can follow the work procedure up to now.","First, consult with your boss and create a work instruction or SOP even for infrequent work.",
+   "Talk to your boss first and ask them to prioritize workplace safety","First of all, consult with your boss and review the work method with safety as the top priority.",
+   "Recognize that safety patrols are an important occupational injury prevention activity that discovers equipment abnormalities and dangers to people.","Keep warning signs visible at all times",
+   "Review work in unstable places"];
+
+   var without_permission_check=["Work may be carried out without notification of work change","As long as I follow the instructions to some extent, I can change them.",
+   "I don't inform minor work changes due to take a time","I actually have my own way of working.","When the instructions are ambiguous, I can freely change the work content",
+   "The safety cover can be opened freely to work."];
+   var without_permission_advices=["Report and consult with superiors when work changes","If there are any changes from the instructions, be sure to notify",
+   "Even minor changes for you can affect others. Consult and discuss even trifles","Discuss any necessary changes with your supervisor. Evaluate safety and change",
+   "If the instructions are ambiguous, check the contents until you can definitely understand.","Recognize that the act of opening the safety cover exposes the dangerous part."];
+
+  //作業のチェックとKYアドバイス データ
+    var ii1=0;
+    var ii2=0;
+    var ii3=0;
+    var wk1=0;
+    var wk2=0;
+    var pr1=0;
+
+    var process =["GL1","GL2","GL4","GL5","GL6","GL7","GL8","GD7","M-3110","M-302","VP-4500","PE","Entire plant","Warehouse"];
+    var work = ["Valve operation","Moving heavy objects","Cleaning work","Work at height","Liquid transfer,drainage work",
+      "Facility management","Sampling work","Working with lift","Walking","Traveling on ramps, steps or stairways",
+      "Gauge checking","Power on","Line dismantling","Wrapping work with a wrapping machine","Neutralization work","Strage of chemicals",
+      "Moving materials(Not heavy)","Solid-phase raw material input work","xxx","xxx"];
+
+    var process_check=[["Some filters are easily clogged","Sampling operation is not at the correct working height in an unstable location.",
+     "Valve is improperly oriented","Sampling work with a narrow workspace and possible exposure to liquid",
+     "Working at heights, possibility of falling","Valve operation at high altitudes and in confined spaces",
+     "When using the printer for raw material input, proper scaffolding is not prepared","Working with powder transfer machines requires moving heavy covers with no footholds",
+     "There are areas where toxic substances are continuously inhaled."],
+     ["There is a flexible hose with frequent friction caused by vibration","Some filters are easily clogged",
+     "Sampling operation is not at the correct working height in an unstable location.","Pumps and other equipment are vibrating",
+     "Sampling work with a narrow workspace and possible exposure to liquid","When using the printer for raw material input, proper scaffolding is not prepared",
+     "Working with powder transfer machines requires moving heavy covers with no footholds","There are areas where toxic substances are continuously inhaled"],
+     ["GRequires frequent travel to high elevations"],["Solid-phase material feeding operations may come in contact with remaining NaSH"],
+     ["There are valve operations that, if operated incorrectly, may cause suffocation or contact with hazardous materials","Difficult to see content volume when sampling"],
+     ["Narrow work space","Easy to strain the lower back when opening and closing heavy manhole covers",
+     "Possibility of exposure to hazardous materials during neutralization operations","Small portions of water (10 kg) and ATO (20 kg) are easy to strain the back",
+     "Working on a temporary line carries a high risk of exposure to liquid","Some valves are difficult to operate with sampling valves"],
+     ["Work that requires undue force and may result in a fall","Valve is oriented in a way that makes it difficult to operate",
+     "Narrow work space","Easy to strain the lower back when opening and closing heavy manhole covers",
+     "Insufficient lighting in some areas","Some valves are difficult to turn",
+     "Residual liquid may remain during line dismantling operations","Small portions of water (10 kg) and ATO (20 kg) are easy to strain the back"],
+     ["Need to climb stairs repeatedly"],["After inspection work, when turning on the power, there is a possibility that the cable will be shorted"],
+     ["There are obstacles in the area where the forklift is working that can be overlooked and hit"],
+     ["VP-4500Equipment that should be regularly inspected is not inspected","There is a facility with a structure that makes it difficult to transfer or drain the liquid"],
+     ["Forklift drum tongs can damage drums","Hydrochloric acid, aqueous ammonia, hydrogen peroxide, acetic anhydride, and MCE stored in PE drums can be mistaken"],
+     ["There are places where you hit or get caught in the aisle","The chemicals you handle are hazardous",
+    "Equipment that should be regularly inspected is not inspected","There are places where the space between stairs is narrow",
+    "There are places where the suction capacity of the local exhaust system is insufficient","The chemicals you handle are hazardous"],
+     ["Static electricity is likely to occur during packaging work using a wrapping machine","The work space in the area where you work with the forklift is narrow",
+    "There are places where safety guards are needed"]];
+    var process_advices=[["Optimal filter and filter configuration (parallel, series, combination of mesh sizes) for expected lifetime","Create a work-friendly environment",
+     "Improve the direction of the appropriate valves","Expansion of work space and implementation of measures to prevent line clogging",
+     "Fall prevention measures (fences, harnesses, etc.)","Implemented fall prevention measures",
+     "Prepare appropriate scaffolding for work at heights","Consider equipment to move heavy covers with light force",
+     "Consider sealing and local exhaust ventilation.Conduct risk assessment for each chemical substance"],
+     ["Hang hoses or change to sturdy hoses","Optimal filter and filter configuration (parallel, series, combination of mesh sizes) for expected lifetime",
+     "Create a work-friendly environment","Vibration of pumps and other equipment is repaired immediately",
+     "Expansion of work space and implementation of measures to prevent line clogging","Prepare appropriate scaffolding for work at heights",
+     "Consider equipment to move heavy covers with light force","Consider sealing and local exhaust ventilation.Conduct risk assessment for each chemical substance"]
+     ,["Improvement of equipment to allow level checks on the ground floor"],["Maintenance of cleaning procedures"],
+     ["Review valve operating procedures prior to work and display valve operation if necessary","Changed to a container that makes it easy to see the content volume"],
+     ["Reviewed whether equipment could be improved in areas where work space is narrow","Consider manhole covers that can be opened and closed with light force",
+     "Consider installing a digital PH meter","Consider automation of water (10 kg) and ATO (20 kg) sorting operations",
+     "Consider whether you can make it a fixed line","Improved valves"],
+     ["Review methods for work that requires excessive force, and implement fall prevention measures","Consider whether it is possible to modify the direction of valves that are difficult to operate",
+     "Reviewed whether equipment could be improved in areas where work space is narrow","Consider manhole covers that can be opened and closed with light force",
+    "Consider improvements to provide sufficient brightness","For valves that are difficult to turn, consider valve replacement, etc.",
+    "Improved work procedures (e.g., blowing) that do not leave residual liquid","Consider automation of water (10 kg) and ATO (20 kg) sorting operations"],
+    ["Installation of explosion-proof cameras"],["When turning on the power, check that there is no short circuit in the cable."],
+    ["Obstacles that are easily overlooked by forklifts should be removed or displayed prominently."],
+    ["Equipment that should be periodically inspected is put together in a control table and an inspection record is kept","Improved facilities to facilitate fluid transfer/extraction"],
+    ["When moving drums with a forklift, cover the tip of the drum tongs with rubber","Chemical substances stored in PE drums are labeled so that they can be identified"],
+    ["Repair the parts that collide or get caught in the aisle","Education on the hazards of the chemicals we handle",
+    "Equipment that should be periodically inspected is put together in a control table and an inspection record is kept","Consider the width between the stairs so that it meets the equipment technical standards",
+    "Consider so that failure can be detected, and implement regular management (differential pressure, anemometer, etc.)","Conduct risk assessment for each chemical substance"],
+    ["Implement anti-static measures for packaging work with a wrapping machine","Consider expanding your work area",
+    "Installation of safety guards"]];  
+
+    var work_check=[["Unreasonable force is required to operate the valve, and the work is done in high places","Work without thinking about the danger of hitting the body with the valve operation",
+    "When opening a valve, do not check the condition of other valves","Unreasonable force is required when operating the valve",
+    "No worries about valve operation in tight spaces","Working at heights, and unreasonable posture",
+    "Not aware of areas in the work area that may bump into your body","The valve is located at a high place, and the valve may be operated with an unreasonable posture"],
+    ["I plan to go to the materials warehouse to pick up parts.","Parts without handles may be moved in an unreasonable posture",
+    "Heavy objects may be removed or moved in unstable places such as on a stepladder.","For familiar work performed by multiple people, each person should do their own work properly.",
+    "Sometimes I pick up a bucket of water without thinking","Sometimes I move drum cans manually by one person.",
+    "When moving heavy objects with a crane, I am not conscious of where they may be pinched.","Work may be performed without using a fall prevention jig for heavy parts.",
+    "Not checking my feet when moving heavy items such as pallets by hand","When lifting and moving a heavy object, I may unconsciously put my hand under the heavy object.",
+    "Not being aware of the danger of pinching fingers when arranging drums on a pallet","When working with a drum porter, I sometimes leave the workplace with the drum set.",
+    "Even heavy objects (more than 20 kg) may be moved manually","Sometime move objects in an unreasonable posture",
+    "Inexperienced personnel may suddenly lift and move heavy items (more than 20 kg).","Sometimes I lift an 18kg pail up to shoulder height to subdivide the product.",
+    "If it is 5 gallon (about 20 kg), it can be moved without protective equipment","When moving heavy objects such as manhole covers, I don't have to worry about my work posture",
+    "When moving heavy objects such as injector hoses, I don't have to worry about my posture","There is work to move heavy objects where there is no work scaffolding"],
+    ["Filter cleaning is in an unreasonable position"],
+    ["Unreasonable force is required to operate the valve, and the work is done in high places","Work accidents do not occur simply by going up and down stairs",
+    "Do not wear a harness, even when working at heights","Working at heights, and unreasonable posture",
+    "I don't mind even if the footing is unstable at a high place"],
+    ["The influence of detonation gas is not considered when adding organic solvent.","Work methods for safely draining residual liquid from pipes have not been considered.",
+    "I often open the flange (loosen the bolt) without being aware of anything","I do not predict the danger that the hose will run wild when draining liquid under a slightly pressurized situation.",
+    "When cleaning the strainer, the open/closed state of the valve from the source valve to the drain destination is not checked.","In unsteady operation, the work procedure may be changed during work progress.",
+    "Today, I operate valves that are not normally touched","There are places where hazardous materials (harmful substances) overflow if the operation procedure is incorrect.",
+    "Sometimes forgetting to tell the next shift that the drain valve was opened during non-regular work","Actually, I don't know well the physical properties of the substances I handle",
+    "Actually, I don't understand the flow of piping","A single valve is used to cut ties in preparation for construction.",
+    "When preparing for construction, a liquid sealing state may be created.","Not checking whether the valve is open or closed before starting the pump",
+    "Tygon tubes used for liquid transfer work are not replaced regularly","Not conscious of whether the syringes, filters, used in the work are appropriate",
+    "When transferring liquid, I don't consider the possibility of the liquid splashing on the face","Working without checking the condition of the container being transferred",
+    "Not aware of the risk of flexible hoses bursting","Not aware of the risk of inhaling or contacting toxic substances during liquid transfer work",
+    "Be aware that there is a risk of inhalation or contact with toxic substances when transferring fluids, and wear appropriate protective equipment","Two enrichment operations may overlap",
+    "Odors are generated from wastewater discharge, etc"],
+    ["Not properly inspecting fire alarms","Equipment such as regulators is not regularly inspected",
+    "Filter cleaning is in an impossible position","I don't mind if the pump vibrates",
+    "Some of the facilities such as local ventilation systems are out of order, but they are left as they are"],
+    ["I do not know the hazard/hazard information of the material to be sampled","I don't mind working in a slightly unreasonable posture",
+    "No protective equipment was worn during the sampling work","Sometime forgetting to label sample bottles"],
+    ["When working after getting off the forklift, sometimes leave the fork is raised.","When backing up the forklift, sometimes backs up without checking the rear.",
+     "I don't care where the pallets are placed","When working with a forklift, I do not check where there is a risk of collision"],
+    ["Occupational injuries do not occur just by walking on site","Sometime I scurry around the workplace",
+    "Drainage pits and ditches that are normally covered sometime be left open","I don't mind if there is a small protrusion in the aisle",
+    "Sometime I use shortcuts that are not aisle","Sometime I may look away while walking in site",
+    "I don't care even if there are somethings in the aisle that don't usually put"],
+    ["Going up and down stairs without handrails","Sometimes using stairs with both hands occupied by luggage",
+    "I don't feel danger when I go down two or three steps.","I think I'm safe if I have a handrail.",
+    "Sometime I may run down stairs or skip one step","When descending a ladder, you become relaxed as you approach the final step.",
+    "Not conscious of falling when using stairs","I will never been injured on the stairs",
+    "I don't care even if step stoppers or non-slip staircases are broken"],
+    ["Not checking the surroundings when checking the gauges"],
+    ["Not checking the cable status when turning on the power"],
+    ["The presence or absence of residual liquid is not checked during line dismantling work"],
+    ["Not checking the surroundings when packing with a wrapping machine"],
+    ["Not wearing protective equipment when inspecting with PH paper"],
+    ["I don't know the hazard information of the chemical substances I handle"],
+    ["Doing work that repeats the same action","The condition of the container containing the raw material is not checked when the raw material is manually added.",
+    "Not wearing protective glasses when disposing of chemical materials","I don't know the dangers of the substances I handle in my work"],
+    ["Cleaning work is not performed after NaSH solid-phase raw material is added"]];
+    
+    var KY_advices=[["Ensure safety at heights and avoid unreasonable positions","Check your surroundings in case your hand slips on the valve operation",
+    "Before operating a valve, check the condition of the other related valves","Be careful not to assume an unreasonable posture",
+    "When working in tight spaces, make sure you don't collide with surrounding equipment","Be careful not to be in an unreasonable posture",
+    "Identify areas where you might bump into someone, assuming unforeseen circumstances such as slipping feet, slipping hands, stumbling, etc","Operating valves in an unreasonable posture may result in risk of exposure to liquid"],
+    ["In an unorganized warehouse, materials may interfere with each other and heavy items may fall. Be careful not to bump materials, and always keep them neat and tidy","When moving heavy objects, install a tipping prevention jig with a handle.",
+    "Prohibit the use of stepladders when working with heavy objects, and install suitable scaffolding.","When working with two or more people, get into the habit of (1) talking to each other (2) checking the other person's movement and situation",
+    "Work that requires frequent slouching can cause lower back pain. Wear a protect belt for back pain","When moving drum cans, use a moving tool such as a drum carrier",
+    "When operating a crane, be aware of possible pinch points","When removing heavy equipment parts, take measures such as using fall prevention jigs",
+    "When moving heavy objects by hand, make sure there are no steps or protrusions that could tip over.","When lifting and moving heavy objects, remember to work in a position where your hands will not get caught.",
+    "When arranging drums on a pallet, be careful that you are caught in the gaps between the drums.","When leaving the workplace, return the drum porter to the designated place without leaving it unfinished.",
+    "Use appropriate tools (drum porters, etc.) to move heavy objects (more than 20 kg)","Working in an unreasonable posture can cause injury, so first report it to your superior before you get hurt.",
+    "If an inexperienced person moves a heavy object (more than 20 kg) forcibly, he/she will be injured, so ask an expert to do the work","The work of lifting an 18kg pail to shoulder height may cause injury. Review the location of equipment.",
+    "Even if you are confident in your physical strength, wear protective equipment while working.Pay particular attention to your posture when performing repetitive movements","When moving heavy objects, be careful about your working posture and avoid pinching your hands",
+    "When moving heavy objects, be careful about your working posture to avoid excessive force","Secure a working platform when moving heavy objects"],
+    ["Working in an unreasonable posture invites an accident. Review work methods and equipment"],
+    ["Ensure safety at heights and avoid unreasonable positions","Recognize that many occupational injuries occur when climbing stairs, so check your footing",
+    "It is prohibited to work at heights without fall prevention measures. Always wear a safety belt when working at heights","Take fall-prevention measures at heights, and be careful not to be in an unreasonable posture",
+    "Unstable scaffolding at high elevations is a risk of falling. Work from a solid foothold"],
+    ["When handling flammable substances, take measures against static electricity such as grounding and limiting the flow rate, and work under a nitrogen atmosphere outside the explosion limit.","Assuming the possibility of residual liquid overflowing during the liquid removal work in the pipe, prepare an unsteady work instruction.",
+    "When opening the flange, assume the possibility that the residual liquid will spurt out, so loosen the bolts farthest from you first.","When draining liquid with a hose under a slightly pressurized situation, check the valve operation procedure so that pressure is not applied to the hose at once.",
+    "Before operating the valve for liquid drainage, check the line from the source valve to the transfer destination (valve open/close status) by direct checking","If the work is changed, perform hazard prediction again and keep the workers away until safety is ensured.",
+    "Assuming that the valve will not open/close completely, check the status of the peripheral equipment in advance, and assume that the liquid level will change as the valve opens and closes","Check in advance how to deal with overflow problems before starting work.",
+    "When performing non-regular operations, be sure to pass them on to the next shift.","Recognize the physical properties and dangers of the materials you are handling, and work after knowing how to deal with dangerous materials",
+    "Understand the flow of piping with P&ID, and work by recognizing where the dangerous parts of the equipment are.","Valves should be leaky, and hemming should be done with blind flanges",
+    "There is a danger that the enclosed liquid will spurt out due to thermal expansion, so please remove the liquid in advance.","Before starting the pump, check the open/closed status of the valves to eliminate the risk of being exposure to liquid",
+    "Replace the Tygon tube used for liquid transfer regularly (every 30 days)","Prepare appropriate tools and materials before starting work following the procedure manual",
+    "When transferring liquids, be aware of how to minimize the risk of exposure (wearing appropriate safety glasses)","Be aware of the risk of overflowing containers that are being transferred and check the condition of the containers",
+    "Make sure that flexible hoses are protected from damage due to chafing, etc","When two hazardous operations are combined, there is a risk of serious occupational injury.Discuss how to proceed with the work with the parties concerned in advance",
+    "Inhalation of toxic vapors may be hazardous to health. Wear appropriate protective equipment"],
+    ["Check fire alarms properly","Check the equipment that should be inspected regularly",
+    "Working in an unreasonable posture invites an accident. Review work methods and equipment","Vibration of equipment can cause unexpected damage and trouble.Immediately check and take countermeasures",
+    "If you find equipment that is out of order, immediately report it to the relevant person and repair it"],
+    ["Check the hazard and toxicity information for the substances you are handling","Unreasonable posture can lead to accidents. Adjust the height and other postures to achieve an appropriate posture",
+    "Sampling operations involve the risk of exposure to liquid. Wear appropriate protective equipment","Make sure the sample bottles are labeled"],
+    ["Be aware of the risk of tripping if you leave the fork up","When backing up with a forklift, be sure to check behind",
+    "Recognize that forklift operators often trip over pallets and optimize pallet placement","Check for hazards before working with a forklift"],
+    ["If the floor is slippery, even walking fast can lead to a fall accident, so check for slippery areas.","There is a danger of tipping over or colliding when scurrying, so walk calmly even if you are in a hurry.",
+    "If it is necessary to be left open the drainage pit or ditches, take measures to prevent falling.","There is a danger of falling even with a small protrusion, so take measures to eliminate protrusions",
+    "As a general rule, walking is prohibited outside the aisles. And recognize of the danger of falling and crashing.","Be aware of the dangers lurking at the manufacturing site, and walk with caution in front of you, under your feet, and above your head.",
+    "There is a danger of stumbling if you put somethings in the aisle. If it interferes with the work flow line, display a warning at that location."],
+    ["Recognize that there are many occupational injuries on the stairs, and be sure to hold the handrail","When using stairs, keep at least one hand free so that you can hold the handrail",
+    "There is a danger of missing your steps even with 2 or 3 steps, so watch your step","Even if you have a handrail, there is a risk of injury. Especially be careful when getting off.",
+    "Even if you are in a hurry, do not run down the stairs and use each step correctly.","When descending a ladder, do not relax until you are on the ground",
+    "When using stairs, pay attention to the steps under your feet and be sure to hold the handrail.","Be aware that there are many falls on the stairs,  watch your feet, and hold the handrail.",
+    "If there is a problem with the step stoppers or non-slip steps, repair it immediately as there is a danger of falling."],
+    ["Before starting work, make sure there are no protrusions that could cause your body to hit the surrounding area"],
+    ["When turning on the power, check the condition of the cable for the possibility of a short circuit"],
+    ["Check for residual liquid during line dismantling work"],
+    ["Be aware that static electricity is generated during packing work with a wrapping machine, and make sure there are no combustible materials around"],
+    ["Wear appropriate protective equipment when inspecting with PH paper"],
+    ["Before starting work, check the hazard information of the chemical substance to be handled"],
+    ["Warm up before work, check your physical condition, and take a break before you feel tired","When adding raw materials manually, check that there are no cracks, tears, or other abnormalities in the container or bag in order to minimize the risk of contact with the raw materials or exposure to liquid.",
+    "Wear eye protection to minimize the risk of contact with hazardous materials in your waste","Recognize the dangers of substances handled in the work with SDS, and wear appropriate protective equipment (Tyvek suit) following to the procedure manual."],
+    ["Solid-phase raw material input workIf cleaning is not performed after NaSH solid-phase raw material is added, there is a possibility of touching the remaining NaSH.Clean up"]];
+
+  //初期表示
+   //意識のチェック
+   var ntl= no_thinking_check.length; 
+   var nt=Math.floor(Math.random()*ntl); 
+    document.getElementById("no_thinking").innerHTML = 'No thinking: ' + no_thinking_check[nt];
+ 
+   var rl= reckless_check.length; 
+   var rec=Math.floor(Math.random()*rl); 
+    document.getElementById("reckless").innerHTML = 'Reckless: ' + reckless_check[rec];
+  
+   var il= ignore_check.length; 
+   var ign=Math.floor(Math.random()*il); 
+    document.getElementById("ignore").innerHTML = 'Ignore: ' + ignore_check[ign];
+
+   var nal= no_awareness_check.length; 
+   var noa=Math.floor(Math.random()*nal); 
+    document.getElementById("no_awareness").innerHTML = 'No awareness: ' + no_awareness_check[noa];
+  
+   var lal= lack_of_knowledge_check.length; 
+   var lac=Math.floor(Math.random()*lal); 
+    document.getElementById("lack_of_knowledge").innerHTML = 'Lack of knowledge: ' + lack_of_knowledge_check[lac];
+  
+   var nol= no_consciousness_check.length; 
+   var noc=Math.floor(Math.random()*nol); 
+    document.getElementById("no_consciousness").innerHTML = 'No consciouness: ' + no_consciousness_check[noc];
+   
+   var inl= insensitive_check.length;
+   var ins=Math.floor(Math.random()*inl);
+    document.getElementById("insensitive").innerHTML = 'Insensitive: ' + insensitive_check[ins];
+  
+   var lol= lack_of_interest_check.length;
+   var loi=Math.floor(Math.random()*lol);
+    document.getElementById("lack_of_interest").innerHTML = 'Lack of interest: ' + lack_of_interest_check[loi];
+
+   var wil= without_permission_check.length;
+   var wit=Math.floor(Math.random()*wil);
+    document.getElementById("without_permission").innerHTML = 'Without permission: ' + without_permission_check[wit];
+
+   //工程のリスクと作業のチェック
+    document.getElementById("process_check").innerHTML = process[0] + ' Hazard: ' + process_check[0][0];
+    document.getElementById("work1_check").innerHTML = work[0] + ': ' + work_check[0][0];
+    document.getElementById("work2_check").innerHTML = work[0] + ': ' + work_check[0][1];
+
+    var photoElement1 = document.getElementById('photo1');
+    var photoElement2 = document.getElementById('photo2');
+  
+  //工程・作業変更
+    form.addEventListener('change', changed);
+    function changed(){
+      var process1 = document.getElementById("process").value
+      var work1 = document.getElementById("work1").value;
+      var work2 = document.getElementById("work2").value;
+
+      var check1_items= work_check[work1];
+      var l1=work_check[work1].length;
+      var i1=Math.floor(Math.random() * l1);
+      wk1=work1;
+      ii1=i1;
+
+      var check2_items= work_check[work2];
+      var l2=work_check[work2].length;
+      var i2=Math.floor(Math.random() * l2);
+      wk2=work2;
+      ii2=i2;
+
+      var check3_items= process_check[process1];
+      var l3=process_check[process1].length;
+      var i3=Math.floor(Math.random() * l3);
+      pr1=process1;
+      ii3=i3;
+
+      document.getElementById("process_check").innerHTML = process[process1] + ' Hazard: '+ check3_items[i3];
+      document.getElementById("work1_check").innerHTML = work[work1] + ': '+ check1_items[i1];
+      document.getElementById("work2_check").innerHTML = work[work2] + ': '+ check2_items[i2];
+    };
+
+  //チェックスタート　クリック後の処理
+   //KYアドバイス表示
+    button.addEventListener('click', getValue);
+    function getValue(){
+      document.getElementById("no_thinking").innerHTML = 'KY advice: '+ no_thinking_advices[nt];
+      document.getElementById("reckless").innerHTML = 'KY advice: ' + reckless_advices[rec];
+      document.getElementById("ignore").innerHTML = 'KY advice: ' + ignore_advices[ign];
+      document.getElementById("no_awareness").innerHTML = 'KY advice: ' + no_awareness_advices[noa];
+      document.getElementById("lack_of_knowledge").innerHTML = 'KY advice: ' + lack_of_knowledge_advices[lac];
+      document.getElementById("no_consciousness").innerHTML = 'KY advice: ' + no_consciousness_advices[noc];
+      document.getElementById("insensitive").innerHTML = 'KY advice: ' + insensitive_advices[ins];
+      document.getElementById("lack_of_interest").innerHTML = 'KY advice: ' + lack_of_interest_advices[loi];
+      document.getElementById("without_permission").innerHTML = 'KY advice: ' + without_permission_advices[wit];
+ 
+      document.getElementById("work1_check").innerHTML = /*work[wk1] +*/ 'KY advice: '+ KY_advices[wk1][ii1];
+      document.getElementById("work2_check").innerHTML = /*work[wk2] +*/ 'KY advice: '+ KY_advices[wk2][ii2];
+      document.getElementById("process_check").innerHTML = 'Improvement: '+ process_advices[pr1][ii3];
+    
+   //労災情報の表示
+      var photoElement1 = document.getElementById('photo1');
+      var textElement1 = document.getElementById('text1');
+      var iframeDocument1 = textElement1.contentWindow.document;
+      var photoElement2 = document.getElementById('photo2');
+      var textElement2 = document.getElementById('text2');
+      var iframeDocument2 = textElement2.contentWindow.document;
+
+      var process1 = document.getElementById("process").value;
+      var work1 = document.getElementById("work1").value;
+      var work2 = document.getElementById("work2").value;
+      
+      var reports =[
+    //wk0
+      ["화학 드럼 캔 취급 작업 @ 생산 공장\n11월 18일 금요일\n15:00 야간근무자(피해자 A, 동료 B/C, 작업장 D)가 주간근무자와 함께 일을 이어받았다. 1345시간, 부상자는 Low Boiler(LB) 불순물 공급 펌프 GA-824에서 Phenol Plant로 질소 퍼징을 수행하는 작업을 할당받았습니다. 퍼지 과정에서 부상자는 압력계를 확인했고 수치가 '0'인 것을 발견했습니다. 즉시 그는 퍼지를 중지하고 시스템을 감압하라는 지시를 받았습니다. 그는 질소 감압 밸브를 열기 전에 배출 라인 밸브와 질소 차단 밸브를 분리했습니다. 그는 감압 지점에서 아무것도 나오지 않는 것을 발견하고 유연한 호스를 제거하기 시작했습니다. 유연한 호스를 제거하자 유연한 호스에 갇힌 LB가 그의 목과 팔에 몇 방울 닿았습니다.\n부상자는 PG 라인의 추가 밸브를 열지 않아 잘못된 라인업을 한 것으로 파악됐다. 그는 압력 게이지 수치가 0이었기 때문에 유연한 호스가 이미 감압되었다고 잘못 해석했습니다.",
+     "13:00 피해자는 옥외 수조야적장에서 농황산을 보내는 깡통 펌프의 체크밸브를 교체하기 위해 배관에 있는 짙은 황산을 배수하기 시작했다. 방패, 보안경, 고무장갑이 달린 안전한 헬멧. 피해자는 액체를 제거하기 위해 배관 옆에 있는 5개의 밸브를 닫았습니다. 피해자는 여과기 아래에 팬을 놓았습니다. 그리고 피해자가 배수구 마개를 천천히 풀자 마개가 팬 안으로 떨어졌다. 이때 피해자는 팬에서 튀어나온 황산에 양손 목이 닿았다.\n13:10 피해자는 물로 양손을 씻은 뒤 제조과장에게 신고했다.\n13:15 생산과장은 현장을 확인한 후 환경안전과장과 공장장에게 연락을 취했다.\n13:20 공장장은 피해자에게 흐르는 물에 1시간 이상 손을 씻도록 지시했다.",
+     "대략 오전 5시 30분에 한 직원이 HP385에서 HT391까지 라인이 깨끗한지 확인하는 동안 회수된 이소시아네이트를 뿌렸습니다. 직원들은 이른 저녁에 복구된 ISO가 HP385를 통해 펌핑되지 않아 생산을 중단해야 한다는 사실을 발견했습니다. 안전한 작업과 줄바꿈 및 잠금이 완료되었고 직원들은 가장 낮은 지점에서 줄 밖으로 모든 물질을 배출했다고 생각했습니다. 라인 배수를 완료한 후 직원들은 저압 N2를 사용하여 HT391 공급 라인의 상단에서 펌프를 통해 배수 포트까지 퍼지하려고 시도했지만 성공하지 못했고 N2를 불어낼 수 없었습니다. 이후 직원들은 위에서 아래로 고압의 N2를 사용하려 했고 이때 HT391 상단의 단선된 라인에서 재료가 분출되어 직원이 뿌렸습니다. 직원은 즉시 헹구고 10분 동안 샤워를 했으며 오전 5시 50분쯤 병원으로 이송되어 평가를 받았습니다. 이후 해당 직원은 같은 날 회사 OccMed 의사를 만나기로 일정을 잡았고 다음날 출근하라는 지시를 받았습니다. OccMed와의 후속 약속은 2016년 8월 25일로 예정되어 있습니다. 직원은 후속 약속에서 이틀(8/24 및 8/26) 동안 직장을 쉬라는 지시를 받았습니다.",
+     "11:50 B팀이 추출장비 가동 준비를 하던 중 밸브에서 누수되는 것을 발견하고 A팀장에게 연락함.\n11:55 A팀장(피해자) 현장 확인 및 누수 위치 파악(다이아프램 파손으로 추정)\n12:10 A반장 A사 밸브 다이어프램 교체 가류 작업 진행\n・밸브 설치 배관의 N2 블로우(반응액 공급)를 하기 위해 블로우 목적지인 추출탑의 수위를 조정한다.\n・반응액 공급관의 N2 블로잉을 실시했습니다. 송풍 후 질소 밸브를 닫고 밸브 하단 SG에서 액체가 나오지 않아 잔류액이 없는 것으로 판단하였다. 한편, 질소 밸브를 닫아 내부 압력이 추출탑 측으로 빠져나간 것으로 판단됐다.\n12:15 밸브 보닛 하단의 너트 2개를 풀고 잔류액이 없는지 확인한 다음 상단의 너트 2개를 풀고 밸브 핸들을 흔들어 액이 나오지 않는지 확인한다.\n12:18 밸브 보닛의 너트 4개가 모두 제거되었고 밸브를 제거하려 할 때 내부 액체가 분출되어 왼쪽 앞부분에서 가슴까지 약 1리터의 액체에 노출되었습니다. (에틸아세테이트/헥산, 추정 누출량 20리터) A조 리더는 고글과 정전기 방지 장갑을 착용하고 있었는데, 고글 틈으로 잔류 액체가 왼쪽 눈으로 들어왔다.\n12:21 그룹 리더 A는 관리실로 달려가 지원을 요청하고 매니저에게 보고하고 눈을 씻기 시작했다.\n12:23 과장이 관리실에 도착하여 상황을 확인하고 피해자들에게 눈을 계속 씻으라고 지시했습니다.12:35과장에서 관리부서로 병원수배 요청\n12:45: 피해자들은 세수를 멈추고 샤워기로 몸을 씻음"],
+    //wk1
+    ["10:15 - 1. 보관/사용을 위해 25kg의 원료 분말 백을 픽업하여 열린 상단 드럼으로 옮깁니다.\n2. 백을 상단 드럼으로 옮기고 먼지가 발생하지 않도록 천천히 내부에 고정합니다. 똑바로 서 있을 때 '팝' 과 허리 통증을 느꼈습니다.\n10:25 EHS 관리자에게 사건 보고.\n11:30 검사를 위해 직원을 진료소로 보냈습니다.\n15:30 지시에 따라 진료소에서 돌아와 처방 진통제를 복용하고 다음날 4.5kg의 체중 제한으로 직장에 복귀하기 위해 하루 동안 일하지 않습니다.후속 의사 방문은 2022년 8월 3일 발생합니다.",
+     "1. 오전 9시 30분에 교환원이 PM 드럼을 믹싱룸 #1 외부의 드럼 준비 구역으로 옮겼습니다.\n2. 작업자는 지정된 위치에 드럼을 배치합니다.\n3. 표시된 대기 장소에는 다른 드럼이 없었습니다.\n4. 드럼 돌리는 이 부분적으로 가득 찬 드럼에 부착된 상태로 남겨졌습니다. 이것은 작업 셀 주변의 공간 부족으로 인해 표준 관행이 되었습니다.\n5. 작업자가 작업 셀 영역으로 걸어가기 위해 몸을 돌렸을 때 드럼 아래에 남겨진 돌리에 남아 있는 드럼 리프트 발.\n6. 드럼이 부분적으로만(2/3) 채워져 있기 때문에 액체는 여전히 드럼 내부에서 좌우로 움직이고 있었습니다.\n7. 돌리 걸쇠가 느슨해져 돌리가 걸어가면서 피해자의 어깨 뒤에서 떨어졌습니다.",
+     "1) 바닥이 건조하고 장애물이 없어야 합니다. 창고에는 적절한 조명과 주변 온도가 있었습니다. 이중 인양 작업 중에 피해자와 도우미는 창고 바닥에서 냉동고 출입구로 60kg 드럼을 들어 올리려고 했습니다.\n2) 조력자는 냉동고를 향하고 있었고 피해자는 냉동고를 등지고 있었다. 피해자는 냉동실 출입구 계단 바로 앞 창고 바닥에 발을 딛고 있었습니다. 드럼을 들어 올리는 과정에서 피해자는 냉동실 출입구 계단에 서 있어야 했습니다.\n3) 피해자는 뒷걸음질을 하기 위해 발을 들어 뒷발판에 올려놓았다.\n4) 피해자의 발이 스텝과 드럼 사이에 끼어 상체가 움직이지 않아 균형을 잃었다.\n5) 피해자는 현지 사고 및 응급실을 방문하여 의사의 진찰을 받았다. 피해자는 '며칠' 동안 발을 쉬라는 조언을 받았습니다.\n 약물이나 치료가 시행되거나 권장되지 않았습니다.",
+     "1) 팔레트에 상자를 적재하는 동안 호이스트에 활주로가 끼어 활주로 이동 시 왼쪽 어깨에 불편함을 느꼈습니다. 사고 당시 직원은 호이스트의 기계적 문제를 보고했습니다. 사건 당시 보고가 없었다.\n2) 2019년 11월 3일, 안전 관리자에게 직원이 주치의를 만나기 위해 퇴근했다고 보고했습니다. 다음 날 아침에 직장에 돌아와 주치의를 만나지 않고 진료소에 가서 약을 처방받았다고 보고했습니다. 직원은 그날 아침 회사 병원으로 보내졌습니다.'때때로 최대 20파운드 들어 올리기' 수정된 작업으로 작업에 복귀했습니다.\n3) 처방된 물리 치료 - 주 2회, 6회.",
+     "실험실용 신소재를 실은 트럭이 도착했습니다.\n품목이 팔레트에 없었습니다.\n모든 운송업체가 바쁘다.\n지게차로 화물을 내릴 수 있도록 트럭에 있는 품목을 팔레트로 옮기는 일을 돕기 위해 실험실 직원을 모집했습니다.\n여러 사람이 각 조각을 팔레트로 들어 올려야 했습니다.\n각 팔레트에 두 개의 가구를 적재했습니다.\n들어 올리는 동안 피해자는 다리 뒤쪽에 갑작스런 통증을 느꼈습니다.\n피해자는 즉시 부상을 신고했고 평가를 위해 병원으로 보내졌습니다.\n평가 후 업무에 복귀했습니다.\n처방 된 다리 랩 및 항염증제.",
+     "1) Omnirad 계량 - 18kg 양동이를 들어 소량을 용기에 담는다.\n2) 어깨에 날카로운 통증을 느꼈으나 지속되지 않았다.\n3) 재료의 무게를 계속 잰다.\n4) 나머지 교대 근무(약 1시간)\n5) 집에서 어깨 통증을 느꼈다.\n6) 다음날 업무에 복귀하여 06:00 - 09:00 근무.\n7) 09:00 도착 시 관리자에게 알립니다.\n8) 피해자를 병원으로 보냈다.\n9) 최대 20lbs의 들어올리기 제한과 어깨 높이에 도달하지 않는 상태로 작업에 복귀했습니다.\n10) 참고: 5월 20일, Doctor에서 전체 릴리스.",
+     "지난 11월(2021년) 작업실 #1에서 5갤런 양동이의 액체를 옮겼습니다.\n복부에 통증을 느꼈다. 피해자는 나아질 것이라고 생각했습니다.\n2022년 1월 3일 주치의에게 갔다.\n2022년 1월 19일 초음파를 실시했다. 복부 탈장으로 진단되었습니다.\n피해자는 2022년 1월 26일 의사로부터 수술이 필요하다고 알렸습니다.\n2022년 1월 27일에 EHS, HR 및 관리자에게 알렸습니다.",
+     "2월 12일 9:30 폐수 처리를 위한 상부 개방형 FRP 와인딩 탱크 100m3(7000φ × 3000H)를 수리하기 위해 작업자 2명이 탱크에 들어가 잔류액 내부를 청소했습니다.\n다른 한 명의 작업자는 탱크 외부에서 모니터링했습니다.\n10:00 피해자가 양동이(약 15㎏)의 물을 들어올리자 허리에 전기가 흐르는 것을 느꼈다. 작업이 거의 끝나가는 관계로 피해자는 비교적 통증이 적은 자세로 작업을 계속하였다.\n10:15 작업이 끝난 후 피해자는 생산관리자에게 허리를 다쳤다고 신고했다. 또한 환경안전실장과 차장에게 보고하였다.\n10:30 피해자는 통증을 동반하지 않는 감시업무 및 사무직에 종사함.\n17:30 피해자는 일을 마치고 집으로 돌아갔다.\n2월 14일(일) 피해자는 집에서 쉬었지만 고통은 여전했다. 그래서 다음날 병원에 가겠다고 프로덕션매니저에게 알렸다.\n2월 15일 피해자는 병원에 갔다. diahnosis는 허리 근육 염증이었습니다. (골 X-ray상 이상소견 없음) 진통제와 피부접착패치를 받았다.\n2월 16일 다음날 피해자는 집에서 요양 중이었다.",
+     "오후 5시 이전 피해자는 도착한 염화티오닐 드럼통 150kg×2개(총 300kg)를 나무 팔레트에 싣고 지게차로 창고로 옮겼다. 창고에 있는 보관 팔레트로 옮기기 위해 피해자가 팔레트에서 드럼 중 하나를 손으로 내리려고 했을 때 넘어졌습니다. 피해자의 오른손(장갑 낀 손)은 바닥과 북 사이에 끼어 있었다. 피해자는 북에서 끼인 오른손을 빼내려다가 북을 들어 올리려고 오른발을 밟았을 때 오른쪽 다리 근육을 당겼다. 왼손으로. 그런 다음 그는 다리에 힘을 가할 수 없었습니다.\n오후 5시 또 다른 생산 관리 담당자가 창고에 앉아 있는 희생자들을 발견했습니다. 발견자는 부상을 발견하고 공장 사무실에 사고 발생을 알렸다. 공장 사무소 직원들이 현장을 확인하러 갔다.\n5:07 119에 전화를 걸어 구급차를 부른다.\n5:10 구급차가 야오웍스에 도착했다.\n5:14 경찰이 야오웍스에 도착.\n5:15 구급차가 피해자를 Ishinkai Yao 종합 병원 (Yao시)으로 이송했습니다.\n5:40 경찰이 상황을 확인했다.\n5:45 피해자는 오른손 검지, 중지, 약지를 봉합하고 찜질을 하는 치료를 받고 병원에서 사무실로 돌아왔다\n오후 8시 피해자는 회사 소유 차량으로 집으로 이송되었습니다.\n오전 9시 30분 피해자는 봉합사 소독을 위해 외래 진료를 받았다.\n6월 1일 이후에는 봉합사 제거 전까지 피해자가 자택 인근 병원을 방문해 소독할 예정이다.",
+     "작업자 2명(피해자 포함)이 원료 준비 작업(종이 봉투(각 25kg) 운반, 소분 계량, 믹서로 혼합(또는 핸드 블렌드)하여 과립화) 작업을 시작했습니다. 전체 중량은 약 300kg입니다.\n8:55 아침마다 하는 스트레칭을 합니다.\n9:00 작업플래너와 담당자 2명이 오늘의 작업내용을 확인한다.\n9:10 2명의 작업자가 계량장과 천막 창고(원료 보관 구역)에서 작업을 시작했습니다.\n10:30 피해자는 트롤리에 실린 5개의 봉지를 들고 계량실로 옮겼다. 이후 피해자는 창고로 돌아와 나머지 5개의 가방을 보관함에 보관하기 시작했다. 피해자가 첫 번째 가방을 들었을 때(반쯤 웅크린 자세) 허리에 통증이 있었습니다. 피해자는 일을 멈추고 휴게실에서 쉬었다.\n13:10 피해자는 점심시간 이후에도 여전히 통증이 있어 TL에 연락했습니다.\n13:30 피해자는 TL과 함께 보건실(HCR)을 방문하였다. HCR의 의사는 건강 검진을 한 후 Tabe 클리닉 (지역 정형 외과 병원)에 가도록 지시했습니다.\n15:00 피해자는 TL과 함께 병원에 도착했다. 피해자는 의사와 상담했습니다. 진단은 허리디스크 장애로, 피해자는 진통제 주사와 전기치료를 받았다. 의사는 약 일주일 동안 병원에 가라고 지시했습니다.\n17:30 피해자는 R&D 센터로 돌아갔다가 집으로 돌아갔다.\n※ 다음날 아침 피해자가 출근했습니다. 그리고 일주일간의 치료 끝에 피해자는 회복되었습니다.",
+     "화학 드럼 캔 취급 작업 @ 생산 공장\n11월 18일 금요일\n15:00 야간근무자(피해자 A, 동료 B/C, 현장반장 D)가 주간근무자와 함께 일을 이어받았다. -공장(D)에서 원료 드럼을 적재하는 작업자 C, 드럼/팔레트 운반(지게차)\n16:00 동료 B가 드디어 팔레트에 실린 원재료 1캔(내용물이 100kg 남음)을 정리하기 시작함 이웃 동료 B의 작업 공간에서 한 손으로 드럼에 가까운 부품(면장갑과 니트릴 고무장갑)을 잡아 당겨 빼내려고 했습니다. 동시에 동료 B는 드럼을 수평으로 밀었습니다. 피해자 A는 즉시 접근하는 드럼이나 팔레트와의 접촉을 피하려고 밴딩테이프를 잡고 재빠르게 잡아당겨 손가락 끝의 표층을 잘랐다."],
+    //wk2
+    ["(1) 11호 압출기 및 배연 덕트 내\n(2) 부상자는 이중사다리를 이용하여 덕트 내부에서 혼자 작업하고 있다.\n(3) 위에서 안전로프를 고정하려 할 때 덕트에 발이 걸리는 곳\n(4) 발이 미끄러져(약 4미터) 넘어졌다.\n(5) 오른쪽 발 뒤꿈치와 왼쪽 손목 골절",
+     "(1) 코팅 작업이 완료되고 블레이드 유닛 청소 작업이 시작되었습니다.\n(2) 피해자는 청소를 위해 오른손에 베임방지장갑+폴리장갑, 왼손에 폴리장갑을 착용하였다. 오른손에는 휴지를, 왼손에는 고정판을 들고 청소를 시작했다.\n(3) 먼지가 너무 심해서 오른손으로 천을 문지르려고 하면 고정판이 오른손의 움직임에 따라 움직여서 왼손 엄지손가락 밑부분에 상처가 생겼습니다.\n* KY는 코트 작업 전에 진행되었습니다.\n* 블레이드 조립 절차 매뉴얼은 있지만 청소 절차 매뉴얼은 없습니다.",
+     "11.00 피해자는 빔 C에서 MB 다이를 교체하기 위해 플러싱을 시작했습니다. (NW2)플러싱된 폴리머가 30분 후 바닥에 달라붙었습니다. 홍조.\n1.00 피해자는 망치를 사용하여 폴리머 용융 블록을 작은 조각으로 만들어 청소했습니다. 그 후 작은 폴리머 입자가 바닥에 흩어졌습니다. 피해자는 작은 폴리머 입자에 미끄러져 바닥에 떨어졌습니다. 그러다 오른팔에 흠집이 났다.\n12시 30분 교환원은 응급실로 이동하여 생리식염수로 흠집을 스스로 닦았다. 그런 다음 그는 상사에게 보고하지 않고 직장에 복귀했습니다.다음날(5월 10일)\n16:45 안전위에서 안전순찰 중 반창고를 하고 있는 그를 발견했습니다. 그는 그날 자신의 사고에 대해 설명했습니다.",
+     "・작업자 2명이 냉각탑 청소를 시작했습니다.\n・작업자 1명(이하 작업자 A, 팀장)이 냉각탑 작업층(1.9m)에 올라 냉각탑 공기흡입구 핀을 제거하고 작업자 1명(이하 작업자 B 및 피해자)이 B는 바닥에 핀을 청소했습니다.\n・11:00경 작업자 A가 제거하기 어려운 핀이 있어 작업자 B에게 ML2의 공구 보관함에서 공구(스패너)를 가져오도록 요청했습니다. 작업자 B가 공구를 가져와 작업자 A에게 주려고 했습니다.\n・당시 작업자 B는 케이블 랙 고정부 돌출부에 다리를 발로 잡고 앞으로 몸을 기울였으며 왼쪽 다리 근육이 늘어난 것 같았다. 넘어지거나 다른 타박상은 없었다.\n・그 후에도 근로자 B는 작업(지느러미 청소, 대부분 앉아서 하는 작업)을 계속하였으나, 일어서서 움직일 때 왼쪽 다리에 통증이 있다고 A 근로자에게 보고하여 출근하기로 결정 그날 집에 와서 상황이 어떻게 되었는지 확인하십시오. 16시경 A씨는 과장에게 그런 취지로 연락을 취했다.\n(12월 27일)근로자 B씨는 통증이 남아 병원에 갔고 왼쪽 다리 근육이 찢어졌다는 진단을 받고 찜질제와 내복약을 처방받았다.",
+     "8시 20분 피해자는 팀장과 함께 정기 청소작업(1일 2회 정도)인 14호 성형기 금형 내부 청소를 시작했다.\n8:30 필름의 구멍이 라인 하류의 두께 게이지에 끼이는 것을 방지하기 위해 급히 두께 게이지로 이동하려고 할 때 공기 냉각 링 덕트를 벌리고 오른발이 미끄러졌습니다. 바닥에 쓰러져 균형을 잃고 넘어졌습니다. 넘어지면서 몸을 지탱하고 있던 왼쪽 무릎을 안쪽으로 비틀었다.\n9:00 청소 후에도 왼쪽 무릎 통증이 가라앉지 않아 팀장에게 보고하고 자가용으로 병원으로 향했다.\n10:00-12:00카츠타 정형외과에서 진료를 받았습니다. 그는 왼쪽 무릎 관절의 내측측부인대 손상 진단을 받고 찜질과 내복약을 처방받았다.\n12:10 공장으로 돌아와 상황 보고 후 귀가. 치료를 위해 1주일간 일을 하지 못하여 정상적인 업무에 정착하지 못하여 주간근무를 하게 됨.",
+     "ETS제조공장 GL-01 교반조 바닥에 부착된 배수관\n6/22 23:00 야간근무, 영업인\n6/23 01:00~ 03:00 2차 반응 후 발생하는 슬러지(부산물)로 인해 피해 A는 장애물 제거를 위해(꾸준한 비일상 작업) 배수관 하부플랜지 개방 후 지그(나사 )드라이버)를 사용하여 아래에서 내부 막힌 부분을 관통하여 청소 작업을 마쳤습니다.\n6/23 08:00 피해자 A씨는 퇴근 후 집으로 돌아와 샤워를 했다.\n6/23 23:00 출근 후 오른쪽 팔꿈치 가려움증 및 수포 발생 확인.반장에게 보고\n6/24 07:00 관리자(대리), 생산팀장, 공장장, 안전팀 접수 통보\n6/24 15:00 오톤 베스티안 이미징 수술 (의사 소견: 이미지 2개)\n--소독 및 연고 치료, 보호용 거즈 도포, 복용약 처방--담당의사 소견 : 다음주 월요일(6/27) 방문안내\n-- 귀국\n6/24 야간근무\n6/27 병원진료(음주약)"],
+    //wk3
+    ["・TUX 7호기 정지 중 점검 중 생산2과 직원이 2호기 감속기의 유면이 낮은 것을 발견하고 주간 근무자에게 주유(6개월에 1회 주유)를 요청함.\n・피해자를 포함한 직원 2명이 현장에 갔다.\n・피해자가 감속기의 주유구 커버에 있는 고정나사를 풀기 위해서는 피해자가 공구를 구하러 가는 것이 좋습니다. 도구.\n・조수가 도구를 가지고 돌아왔을 때 피해자는 압출기 N0.2의 바닥에 누워 있었다(오른쪽 개략도).\n・보조원이 확인했을 때 의식이 있었고 위에서 떨어졌다고 선언했다.\n・움직일 수 없어 구급차로 하마마쓰 대학 병원으로 이송.\n・검진 결과 머리에 이상이 없고, 왼쪽 쇄골 골절 소견, 교두, 고관절 부분 타박상.",
+     "15:00 MB 다이 교체 시작\n18:30 피해자(F/M)가 그림 2와 같이 MB 다이 카세트를 설치하기 위해 MB 흡입 덕트 위로 올라가기 위해 이동식 발판(그림 1)을 밟고 MB 다이 행거와 MB 다이 카세트 사이의 정렬을 확인합니다(약 145°C). , PPE: 안전화, 면장갑 착용) 3명의 작업자와 함께(3명의 작업자가 바닥에서 확인 중임) . 피해자가 확인하는 동안 덕트에서 미끄러져 넘어져 바닥으로 내려가 그림 3과 같이 덕트 구조물에 등이 부딪쳤다.\n19:30 피해자가 허리에 통증을 느끼면 감독관에게 알린다.\n19:45 NW2(7SB) 보조 과장 및 EH&S 보조 과장이 피해자를 Piyawet 병원으로 이송합니다.\n20:10 병원 도착.비고 : 엑스레이 필름에서 L1 척추뼈 부분이 뒤틀린 것을 발견했습니다. 그러자 의사의 부탁\n피해자는 증상을 관찰하기 위해 1박을 했습니다. Piyawet 병원의 의사가 우려를 표했지만 확인할 시설이 충분하지 않습니다. 그래서 우리는 CT 스캔으로 추가 확인을 위해 그를 방콕-라용 병원으로 보낼 것입니다.CT 스캔 결과: 제1요추골이 틀어져 수술 후 4~5일 재활 필요",
+     "11:00 습도계 설치 시작\n11:35 롤러가 달린 의자를 이용하여 책상에 오르고, 습도계 설치 장소를 찾기 위해 의자를 옮기고 의자에서 떨어짐.\n11:38 구급차를 요청합니다. 먼저 무의식, 나중에 의식 회복.",
+     "(1) 11호 압출기 및 배연 덕트 내\n(2) 부상자는 이중사다리를 이용하여 덕트 내부에서 혼자 작업하고 있다.\n(3) 위에서 안전로프를 고정하려 할 때 덕트에 발이 걸리는 곳\n(4)발이 미끄러져(약 4미터) 넘어졌습니다.\n(5) 오른쪽 발 뒤꿈치와 왼쪽 손목 골절"],
+    //wk4 
+    ["1. 09:00 원자로 청소 교육 시작. 펌프는 PM Glycol Ether(Propylene glycol monomethyl ether)를 순환시켜 반응기를 청소합니다.\n2. 트레이너는 순환 밸브를 순환(핸들 수직)에서 최종 필터(핸들 수평)로 이동했습니다.\n3. 배출 밸브는 열린 위치에 있어 액체가 배출되어 피해자의 머리에 튀고 눈으로 흘러내립니다.\n4. 피해자는 믹싱 리더에 의해 안구 세척으로 옮겨져 15분 동안 눈을 헹구고 감독관에 의해 보건소로 이송됩니다.\n5. 클리닉에서 피해자를 석방하여 직장에 복귀시킵니다.",
+     "디스펜싱 기계는 작업자 2의 도움을 받아 작업자 1이 설정했습니다. PM 글리콜 에테르를 분배하도록 기계를 구성하는 동안 분배 노즐 호스가 터져 작업자 2가 보안경을 뿌렸습니다. 파열은 안경을 떨어뜨리고 작업자 2의 눈에 들어갈 정도로 충분했습니다. 작업자 1은 즉시 펌프로의 공기 공급을 차단하고 작업자 2를 눈 세척 스테이션으로 안내했습니다. 시술자 2는 약 10분 동안 물로 눈을 헹구었습니다. 안전요원에게 사고 사실을 알리고 사진을 찍었습니다. 안전요원은 검진을 위해 오퍼레이터 2를 진료소로 데려갔다. 최종 결과는 작업자 2의 눈에 화학 잔류물이 남지 않았고 나머지 하루를 쉬라는 의사의 진단서였습니다. 의사는 또한 안약, 안대(필요한 경우) 및 처방 강도 이부프로펜을 제공했습니다. 다음 날 오전 10시 30분에 후속 약속이 잡혔습니다. 더 이상 제한이 없습니다.",
+     "직원은 약 15mil의 주사기와 필터로 제품 MP2615 UV(코팅)를 필터링하려고 했습니다. 주사기에 압력을 가하는 동안 바닥에 있는 필터가 떨어져 나가고 재료가 실험실 카운터로 분출되어 다시 직원의 얼굴로 들어갔습니다. 직원은 사고 당시 필수 PPE를 착용하고 있었습니다. 물이 튀긴 후, 직원은 즉시 다른 실험실 직원의 도움을 받아 눈 세척을 했으며, 물을 얼굴과 눈에 15분 동안 흘려 보냈습니다. 그 후, QC 관리자는 직원을 실험실 근처 의료 클리닉으로 데려가 의사의 평가를 받았습니다(코팅에 대한 SDS가 클리닉에 제공됨). 직원은 의사에 의해 직장으로 복귀하도록 해고되었으며, 눈에 안약을 처방하고 다음날 후속 조치를 위해 다시 오라고 요청했습니다. 그 직원은 하루 종일 일했고 어떤 짜증도 보고하지 않았습니다. 해당 직원은 4월 7일 금요일 한쪽 눈에 약간의 자극이 있어 후속 방문 후 직장에 복귀했지만 정상적인 업무에 제한을 받지는 않습니다.\n직원은 2017년 4월 12일에 의료 서비스에서 해제되었으며 후속 조치가 필요하지 않습니다.",
+     "직원은 약 15mil의 주사기와 필터로 제품 MP2615 UV(코팅)를 필터링하려고 했습니다. 주사기에 압력을 가하는 동안 하단의 필터가 분리되고 재료가 실험실 카운터에서 분출되어 (금요일 16:45) CST1-Premium에 대한 비중 테스트 수행으로 다시 들어갑니다.\n피펫을 사용하여 테스트 바이알을 채우고 바이알에 덮개를 놓습니다. 튀는 경우 종이 타월로 바이알을 덮으십시오. 수건이 유리병/덮개를 완전히 덮지 않았고 덮개가 자리를 잡았을 때 Covid 안면 가리개와 보안경에 튀는 피해자의 얼굴에 코팅을 뿌렸습니다.\n해당 지역의 선배들에게 보고를 하면 그들은 매니저에게 전화로 알렸다. 기술자는 다른 직원과 함께 가서 약 15분 동안 얼굴을 헹구었습니다. 기술자는 다음 날(토요일) 연간 재고 기간 동안 운영 측에서 도우미로 일했습니다. 눈 자극은 토요일 오후에 시작되었습니다. (현재 보고가 없습니다.)\n월요일에 직장에 복귀하고 약 오전 10시에 동료 직원에게 짜증을 보고했습니다. (기술자는 시간을 잘 모릅니다.) EHS는 대략 12:00에 통보했습니다. 기술자를 진료소로 보냈습니다. 기술자가 직장으로 돌아왔습니다.\n의사는 통증의 경우 아세트아미노펜을 제공했습니다.",
+     "연구 개발부에서 업무를 이관하기 위해. 생산부로 이동하여 연구개발부의 감독하에 작업자들이 배지 안료의 컬럼 분리를 수행하고 있었습니다.\n기둥을 채우기 전에 지면에 물 뿌리기, 접지선 설치, 질소 통기 등의 정전기 방지 조치를 하였다. (톨루엔에 실리카겔 분산)\n두 번째 컬럼을 채울 때 질소 파이프에서 유색 잔류액이 터져 나왔다(이전 작업에서 섞인 것으로 추정). 작업자들은 오염을 방지하기 위해 질소 흐름을 멈추고 작업을 계속했습니다.",
+     "대략 오전 5시 30분에 한 직원이 HP385에서 HT391까지 라인이 깨끗한지 확인하는 동안 회수된 이소시아네이트를 뿌렸습니다. 직원들은 이른 저녁에 복구된 ISO가 HP385를 통해 펌핑되지 않아 생산을 중단해야 한다는 사실을 발견했습니다. 안전한 작업과 줄바꿈 및 잠금이 완료되었고 직원들은 가장 낮은 지점에서 줄 밖으로 모든 물질을 배출했다고 생각했습니다. 라인 배수를 완료한 후 직원들은 저압 N2를 사용하여 HT391 공급 라인의 상단에서 펌프를 통해 배수 포트까지 퍼지하려고 시도했지만 성공하지 못했고 N2를 불어낼 수 없었습니다. 이후 직원들은 위에서 아래로 고압의 N2를 사용하려 했고 이때 HT391 상단의 단선된 라인에서 재료가 분출되어 직원이 뿌렸습니다. 직원은 즉시 헹구고 10분 동안 샤워를 했으며 오전 5시 50분쯤 병원으로 이송되어 평가를 받았습니다. 이후 해당 직원은 같은 날 회사 OccMed 의사를 만나기로 일정을 잡았고 다음날 출근하라는 지시를 받았습니다. OccMed와의 후속 약속은 2016년 8월 25일로 예정되어 있습니다. 직원은 후속 약속에서 이틀(8/24 및 8/26) 동안 직장을 쉬라는 지시를 받았습니다.",
+     "드럼충전기의 플렉시블호스 장착시 개스킷이 바로 아래에 놓인 버킷으로 떨어졌고, 버킷(하단에서 약 1cm)에 쌓인 MPCR이 튕겨 목과 허벅지를 덮었다. 작업은 감독자(피해자) 1명, 작업자 4명 등 총 5명이 진행했다.\n<타임라인>아침입니다.직원이 기존 플렉시블 호스를 제거합니다.(감압 및 조해는 전날 진행되었습니다.)\n13:00 새 플렉시블 호스 설치 시작\n13:50 후렉시블호스 선단에 블라인드 플랜지를 부착한 상태에서 기밀시험을 실시하여 합격하였다. 그 후 감압한다.\n14:10 피해자 외 3명이 드럼주입기의 플렉시블 호스와 플랜지를 연결함. 피해자는 플렉시블 호스를 들고 플렉시블 호스의 설치 작업을 보조하고 있었습니다. 당시 개스킷은 바로 아래에 놓인 양동이에 떨어졌고 양동이에 쌓인 MPCR이 흩어지면서 목과 오른쪽 허벅지에 닿았다.\n14:15 피해자가 통증을 느껴 현장의 온수욕조와 샤워장에서 20분 정도 물로 씻음. 직원은 실장에게 연락하고, 실장은 후임 실장에게 연락할 것이다.\n14:40 피해자는 보건실에서 진찰을 받고 연고로 치료를 받았다.",
+     "피해자는 혼합물에 75% 수용성 솔루틴인 콜린 비코라보네이트를 첨가하고 있었습니다. 첨가 과정에서 반응으로 인해 제품에 거품이 생기고 압력이 높아져 얼굴과 몸에 물이 튀었습니다.\n1) 공압식 드럼 펌프를 사용하여 콜린 바이카보나이트를 혼합물에 추가합니다. 그림 1\n2) 마개에서 미스트가 작업자의 몸과 얼굴에 튀었습니다. 그림 2\n3) 시술자는 눈을 헹구고 20분 동안 샤워를 합니다.\n4) 시술자는 현지 병원으로 이송됩니다.\n5) 클리닉 릴리스 운영자가 제한이나 약물 없이 직장에 복귀합니다.",
+     "10:25 피해자는 반응 케틀을 채울 준비를 하기 위해 수동 펌프를 사용하여 드럼에서 계량 용기로 크레졸의 무게를 측정하기 시작했습니다. (예정 계량량: 9.6kg) 액체가 용기 밖으로 튀지 않도록 플렉시블 호스 끝을 보면서 펌프를 여러 번 돌렸습니다. (그림 1) 왼팔을 확인해보니 어깨에서 손목 사이의 작업복이 유연한 호스 균열*로 인해 누출된 크레졸에 젖어 있었습니다. (플랙시블 호스는 10년째 사용중이며 호스에서 누수는 한번도 없는 것으로 확인되었습니다. 누수 테스트 결과 수용된 액량은 수 밀리리터로 추정됩니다.) 피해자는 즉시 작업을 멈추고 작업복을 벗었다. .\n*호스의 균열은 육안으로 확인할 수 없지만, 누출 테스트를 통해 플렉시블 호스의 드럼 쪽 연결부 근처에서 누출이 확인됩니다(오른쪽 그림 2).\n10:30 상황을 확인한 팀장에게 보고하고 샤워기 청소를 지시했다. 피해자들은 20분 동안 화장실에서 샤워를 했다.",
+     "6/29 당일에는 JC 제품만 약 500캔이 채워질 예정이었습니다. (캔 충전 기계는 MC 소유이며 JC와 함께 사용합니다.)\n* MC : Mitsui Chemicals MC Co., Ltd. JC : Japan Composite Co., Ltd.\n8:30: JC 제품(D2302APS, 20kg x 436캔)의 불포화 폴리에스터 수지 충전 작업이 시작되었습니다.\n10:00: 약 346개의 캔을 완성하고 휴식을 취했습니다.\n10:15: 충전 작업 재개.\n10시 30분 : 약 416캔을 채운 후 협력업체 직원 A(피해자 A)가 주유구의 오염도를 확인하기 위해 주유기에 2m 정도 접근하던 중 플랙시블 호스(C)가 파손됨, 주변에서 레진이 튀게 되었고 레진이 피해자 A의 작업복과 안경에 닿아 눈에 들어갔다(피해자 A는 안경과 고무장갑을 끼고 있었다). 즉시 충진기를 멈추고 충진작업장에 설치된 눈 세척기로 15분간 눈을 씻었다.\n10시 40분 : 피해자 A씨는 협력업체 상사와 과장에게 연락을 취했고,JC 팀장. 팀장은 MC과장에게 연락했다.\n10시 55분 : 피해자 A씨가 협력업체 상사와 함께 오하라 안과를 찾았다. 의사는 각막 이상을 발견하지 못하고 안약으로 치료하고 안약을 처방했습니다.\n11시 40분 : 피해자 A씨는 병원에서 직장으로 복귀했고 신체적 문제 없이 정상적인 업무를 재개했습니다. 캔 충전 기계를 청소한 후 고정되었습니다. 이후 캔 채우기 작업이 재개되어 12시 15분에 완료되었습니다.\n6/30 피해자 A씨는 다음날 눈의 이상은 없었고 일상적인 업무에 종사할 수 있었다."],
+    //wk5 
+    ["Facility management"],
+    //wk6
+    ["오전 9시 15분경 오전 회의 후 피해자는 다른 충진 작업자와 함께 Takenate I-3000 충진을 준비하고 있었습니다. 용기 크기가 18L에서 3L로 바뀌었기 때문에 노즐 높이를 조정해야 했습니다.\n9시 30분경 N2를 사용한 라인 퍼징과 이전 제품 플러싱이 완료되었습니다. 피해자와 그의 친구는 3L 캔의 높이에 맞게 노즐의 높이를 조정하고 있었습니다. 이전에는 높이가 18L 캔 높이로 설정되었습니다. 계량 순중량은 다른 사람이 미리 2.6kg으로 설정했습니다(시스템은 시작 버튼을 누르고 올바른 중량 용기를 계량 플랫폼에 올려야만 채우기를 시작하는 방식으로 안전하게 설계되었습니다). 현재 I-3000 공급 펌프가 작동 중이고 충전 기계 업스트림 수동 밸브가 이미 열려 있습니다. 시작 버튼을 누르면 제품이 쏟아질 수 있는 상황이었습니다. 피해자는 노즐의 높이를 쉽게 모니터링할 수 있도록 고글을 벗은 적이 있습니다.\n10:00경 다른 작업자가 노즐 아래에서 누출을 발견하고 3L 캔을 플랫폼에 올려 놓았습니다. 그 결과 갑자기 노즐이 열리고 제품이 캔 윗부분에 쏟아져 피해자의 얼굴에 튀었습니다. (나중에 그 전에는 시작 버튼이 반쯤 눌려 있었고 ON 상태일 가능성이 있다고 알려졌습니다.) 제품이 피해자의 왼쪽 눈에 들어갔다. 곧 그는 친구의 도움을 받아 가장 가까운 샤워실로 갔고 충분한 양의 물로 얼굴과 눈을 씻었습니다. 그러나 나중에 그는 눈에 통증을 느꼈습니다.\n10시 15분경 사무실 직원이 그를 병원으로 데려와 치료를 받았다. 그의 왼쪽 눈은 의료진에 의해 확인되고 세척되었습니다. 그는 안구 염증을 앓고 약으로 눈 연고를 받았습니다. 다음날 염증이 사라졌습니다.",
+     "2020년 3월 10일 오후 10시 30분경, 피해자는 #400 1 FL에 위치한 폐기물 페놀 수거통을 향해 걸어가다가 경사로를 건너던 중 균형을 잃어 그의 오른편에 들고 있던 통에서 약간의 페놀이 튀었습니다. 바지.\n이벤트 일정:저녁 8시 야간근무 시작.\n오후 10시 피해자는 셧다운 작업의 일환으로 펌프 내부에 남아 있던 폐페놀을 펌프에서 배출하는 작업을 진행한다.\n오후 10시 30분 SS 양동이에 폐페놀을 수거(약 70% 채움)한 후 피해자는 내용물을 약 10m 떨어진 같은 층 #400에 위치한 폐 드럼통에 버린다. 폐페놀을 향해 걸어가던 중 균형을 잃었음 경사로를 건너는 동안 바지 오른쪽에 들고 있던 양동이에서 약간의 페놀이 튀었습니다. 피해자는 즉시 가장 가까운 안전 샤워기에서 다리를 씻고 상사에게 알렸습니다. 그 후 그는 치료를 위해 병원으로 보내졌습니다.",
+     "19:50 박막증발법으로 회수한 1,5-펜타메틸렌디이소시아네이트(PDI)를 채취하기 위한 샘플링 노즐 장착 (규정된 고글 및 장갑 착용. 한편, 마스크는 방독면이 아닌 코로나 대책. 착용 부직포 마스크)\n19:55 PHS를 통해 제어실의 운영자에게 연락하고 액체 이송 펌프를 시작하십시오.\n20:00 약 2L의 초기 PDI가 샘플링 노즐에서 18L 양동이 캔으로 추출되어 피해자의 오른쪽 바닥에 놓였습니다.\n20:05 샘플링은 초기 증류가 제거된 통 옆 바닥에 놓인 5L 캔에서 수행되었습니다. 그 후 그가 일어섰을 때 그의 발이 양동이 캔과 샘플링 캔에 부딪혀 쓰러졌습니다. 무너져가는 양동이를 힘차게 들어올리자 양동이나 샘플링 캔에 있던 PDI가 흩어지고 피해자의 목에 몇 방울 떨어뜨렸다.\n20:06 피해자는 즉시 PHS를 통해 팀장에게 액체에 노출되었다고 보고했다. 반장 지시하에 화장실에서 목 씻기 (약 30분)",
+     "70A 제조 플랜트 GL-02 교반조(반응기)\n10/2(일) 상해자 A:7:00출근(교대근무)\n보호구 착용(장갑 등)으로 반응액의 정상 샘플링 3회 실시(보호구 장갑은 작업 시마다 폐기, 특히 유해물과의 직접 접촉 의 자각이나 컨디션에 이상 증상 없음)상해자 A 퇴근 귀가 손가락에 위화감을 자각10/3(월) 상해자 A 양손에 출근 후 양손에 붉은기와 통증 자각\n10/5 (수) 상해자 A 양손 통증 개선, 복수의 물집 확인교대 반장에게 보고\n10/6(목) 관리자(과장)에게 통지\n과장⇒생산팀장(공장장)->환경안전팀장   공장장->사장\n상해자 A병원 진찰 약 처방 귀가"],
+    //wk7
+    ["1. 피해자가 OP4 슬리터에서 11번 프레임까지 다음 절단 반제품을 픽업하러 갈 때 OP 이송 테이블 리프터는 오른손으로 작동하여 트래블 레버 스위치를 작동시키고 테이블 리프터는 7번 프레임의 에어스토퍼가 하강함을 순찰등이 알려줍니다. 켜져 있는지 확인하십시오.\n2. 피해자는 7번 받침대에서 작동 중이던 주행 레버 스위치에서 오른손을 떼고 받침대 옆에 설치된 에어스토퍼 작동레버를 움직여 테이블 리프터가 정지한 것을 확인하지 않고 에어스토퍼를 상승시켰다. 꺼낼 때 가대와 테이블 리프터 작동 보호 펜스 사이에 끼어 있었다.",
+     "(1) 지게차 운전자가 오른쪽 후방 확인을 소홀히 했습니다. (아무도 없는 줄 알았는데)\n(2) 보행자는 지게차가 작동하는 것을 인지하지 못한다. (트럭에 탄 동료에게 무엇을 보낼지 고민하고 있었기 때문에 지게차의 존재는 신경 쓰지 않았다.)",
+     "(15:20) 1-1 거치대에 반제품 카드를 반제품에 삽입하기 위해 테이블 리프터에 올라 스위치를 눌러 조작판에서 1-1 거치대로 이동 ,하지만 실수로 1-5 요람으로 이동했습니다. 이동 스위치를 눌러 테이블 리프터가 1-5 스탠드 쪽(반대쪽)으로 이동했습니다. 리프터가 작동하는 동안 이동 방향을 확인하기 위해 몸을 뒤집었을 때 실수했음을 깨달았고 오른쪽 발이 발판에서 튀어 나왔습니다. 즉시 비상정지 버튼을 눌러 테이블 리프터를 정지시키려 했으나 자세가 좋지 않아 테이블 리프터를 멈출 수 없었고, 안전화가 걸린 후 발목이 걸렸습니다. 테이블리프터 운전석이 지지대를 넘어 다리가 빠지자 테이블리프터의 비상버튼을 눌러 정지시켰다.\n(15:40) 발목을 확인해보니 너무 부어올라 냉수 스프레이와 아이싱으로 발목을 식혀주었다.\n(16:15) 회사 차량으로 토요오카초 다나카 정형외과로 이송. 그러나 그의 발목은 너무 부어서 걷기가 어려웠다.\n다음날 MRI로 재검사를 해보니 뼈 뒤쪽에 금이 간 것으로 나타났습니다.",
+     "(12:10) 제조2과 담당자(피해자)가 반제품 전표를 반제품에 끼우다가 제품구간 테이블 리프터 이동통로 옆으로 돌아서 삽입하려 함 프레임에 미끄러짐. 운전했다.\n*일반적으로 전표를 삽입할 때 제막기 받침대 측면에서 진입하여 받침대 측면에서 작업합니다.\n・제품부의 원사 하차 담당자가 테이블 리프터에 올라타 반제품을 보관한다. 상기 내용을 확인하기 위해 테이블 리프터를 TUX 3번 스탠드 부근에서 정지시켰다.\n・상품코너에서 원단을 내리는 담당자가 수납틀을 확인하고 TUX3틀과 맞추도록 뒤에 뭐가 있는지 확인하지 않고 뒤로 달렸습니다.\n・제조2과장(피해자)이 바로 뒤에 있었기 때문에 테이블 리프터와 받침대 지지대가 잡혔습니다.\n(12:15) 왼쪽 복부와 오른쪽 엉덩이에 찰과상, 내장 압박 우려로 소방서에 신고. 구급차가 도착해 면담한 뒤 주젠기념병원으로 이송.\n(16:30) 진단 및 치료. X-ray상 요추 우측 외측돌출부의 골절 소견을 보였고 다른 이상소견은 없었다. 피해자는 보행이 어려운 상태였기 때문에 진료와 치료를 마치고 귀가했다.",
+     "TUX B급 제품을 재가공 위탁업체에 넘기기 위한 준비를 하고 있었다.\n(재가공 = 불량품 제거 및 상품화)\n폭이 다른 스크롤을 적재하고 보관할 때 높이 조절용으로 사용\n리치식 지게차는 PP 패드를 수거하여 수거 장소로 운반하는 데 사용됩니다.\n앞바퀴 샤시(아우트리거○)와 높이에 맞는 못에 붙이려고 했습니다.\n그 순간 나는 그의 왼발을 팔레트 모퉁이에 걸고 몸을 앞으로 숙였다.\n앞으로 튀어나온 오른쪽 다리의 정강이가 정지해 있던 아우트리거의 모서리를 강타했다.\n참사 직후에는 살짝 멍이 들었다는 인상밖에 없었고, 바지도 찢어지지 않아 작업을 계속했지만, 잠시 후 멍이 든 곳에서 피가 나는 것을 알아채고 자각하게 됐다. 재해의.",
+     "피해자는 야외에 정차한 트럭에 카톤 박스에 포장된 제품을 지게차에 팔레트를 싣고 싣고 가던 중 비가 와서 판지 상자에 레인커버로 판지를 얹어 운반했다. 두 개의 제품 팔레트를 들고, 다음 제품을 픽업하기 위해 레인 커버 카드보드만 포크에 얹은 채 지게차를 몰고 통로로 돌아왔다. 그는 제품의 세 번째 팔레트를 싣기 시작했다. 판지 상자에 우비를 깔고 앞으로 나가려고 하던 중 지게차 '포크'에 오른쪽 다리를 부딪혀 앞으로 넘어졌습니다. '포크'를 친 부분에 출혈이 있어 '모리키치' 직원이 그를 '미즈타니 의사의 진료소'(산업 의사)에 데려가 치료를 받았다.\n부상자는 8바늘 봉합한 뒤 자택으로 돌아갔다. '모리키치' 이사는 출장에서 돌아와 관계 공무원과 안전환경과에 사고 발생을 신고했다."],
+    //wk8
+    ["A) 밤 12시 30분경. 기술자가 그룹 식사 시간에서 돌아와 스테이징 창고로 옮겨야 하는 드럼을 식별하기 위해 '콘'을 배치하기 시작했습니다.\nB) 피해자는 사건 당시 창고에 혼자 있었다.\n다) 피해자는 사건 당시 통신용으로 제공되는 양방향 무전기를 휴대하고 있지 않았다.\nD) 기공사는 반기별 재고조사 중 무게 확인용으로 사용하던 휴대용 저울에 발을 부딪혀 균형을 잃고 콘크리트 바닥으로 떨어졌다.\nE) 무릎이 바닥에 닿았고 기술자가 바닥에서 일어나기 위해 도움이 필요했습니다.\nF) 배송 책임자는 피해자가 바닥에서 서류를 흔들고 있고 이것이 드럼 상단 위로 보여서 피해자를 알아차렸습니다.\nG) 의사가 무릎 타박상/좌상을 진단한 지역 클리닉으로 피해자를 보냈습니다. 피해자는 클리닉에서 직장으로 복귀했으며 2014년 3월 17일 후속 방문을 위해 복귀하라는 지시와 함께 가벼운 근무 및 제한된 보행에 배치되었습니다.\nH) 피해자가 진료소로 복귀하여 1주일 후 재진료 안내(3/31/14)",
+     "0.20 피해자는 매뉴얼에 따라 T-Die 개구부를 정기적으로 청소하기 위해 반장에게 도움을 요청했다. 피해자는 제품 시트를 되감고 트랜지션 시트로 갈아 준비하던 중 시트가 늘어진 것을 발견하고 이동하려 했다. T-다이 방향.\n목적지로 가는 길에 구덩이 덮개의 손잡이에 걸려 넘어졌다. 0:28 피해자는 현장에 도착한 반장에게 사고와 왼팔 통증을 보고했다. 0.30 분대장이 휴게소에서 왼팔을 확인했다.\n0:32 분과장이 과장에게 보고하고 히타치종합병원으로 이송하여 골절이 확인됨 정형외과 의사 부재로 응급처치 후 일시 귀가 처방된 진통제로.\n9:00 피해자는 병원 정형외과 의사에게 왼팔 수술을 받았다.",
+     "9시 30분경 2SB를 제지하는 작업을 하던 중 부상당한 근로자가 통로 모퉁이를 천천히 돌고 있었다. 왼발이 미끄러져 넘어졌다.\n넘어지면서 턱 밑바닥을 5cm 정도 내리쳤다. 미즈타니의원에 가서 꿰매기(10바늘)를 받았다."],
+    //wk9
+    ["1) 퇴근 후 계단 내려가기.\n2) 발목이 삐어서 계단 한가운데로 떨어졌다.\n3) 피해자는 사건 당시 동료 직원(사건을 보지 못한 사람)에게 자신이 난간을 사용하고 있었다고 보고했습니다.\n4) 피해자는 당시 긴급 치료가 필요하지 않다고 진술하고 집에 갔다. 다음날 관리자에게 그녀가 긴급 치료 병원에 갈 것이라고 알렸습니다.\n5) 인사부 담당자는 피해자에게 SDC Technologies 공인 치료 시설에 보고하도록 지시했습니다.\n6) 피해자는 SDC Technologies 공인 치료 시설에서 진찰을 받았고 부츠를 신은 오른발 골절, 정형외과용 신발을 신은 왼발가락 염좌, 오른쪽 어깨 근육 당김으로 진단되었습니다.\n7) 2017년 9월 8일 직장에 복귀했습니다.",
+     "1. 근무시간에 계단을 내려간다./n2. 계단 끝까지 넘어진다.\n3. 동료 직원(사건을 보지 못한 직원)에게 피해자 신고\n4. 피해자는 당시 긴급 치료가 필요하지 않았고 집에 갔다고 진술했습니다.\n5. 피해자는 다음날 매니저에게 병원에 간다고 알렸다.\n6. 피해자는 병원에서 진찰을 받아 좌측 발목 골절 진단을 받았다.\n7. 피해자에게 1개월간 병가(9.24~10.23)를 부여한다.",
+     "작은 대변이나 HPLC 장치를 잘못 밟았습니다. 대변을 밟을 때 통증을 느꼈다. 하루를 떠나기 약 3시간 전에 작업했습니다. 다음날 허리가 아프고 피해자는 병원으로 보내집니다. 업데이트: 일주일에 여러 번 처방된 요법. 서비스에서 단계 제거, 새 고무 쿠션 주문. 핸드 레일이 있고 바퀴가 없는 새로운 스타일의 발판이 현재 유형을 대체하는 데 사용됩니다.",
+     "2014/07/01\n8:30 피해자는 제조 공정에서 Yotsuyama 탱크 야드로 운반하기 위해 48% NaOH를 채우기 시작했습니다. (그는 그날 4번 배달했습니다)\n13:10 3번 하역 후 탱크 상부 맨홀 뚜껑을 닫고 계단을 내려가기 시작. 위에서 두 번째 계단에서 미끄러져 84cm 이하의 선로 바닥에 착지. 아무것도 잘못되었다고 느끼지 않았기 때문에 그는 계속 일했습니다.\n15:03 피해자는 그날 일을 마치고 집으로 돌아갔다.\n2014/07/02\n8:30 아침에 일어나서 왼쪽 무릎에 이상을 느꼈다. 그러나 트럭을 운전할 수 있었기 때문에 그날은 일상적인 일을 했다.\n14:00 매니저에게 전날 일을 보고하고 수술을 마치고 정형외과에 갔다고 한다.\n18:00 그는 의사를 만나 엑스레이 검사를 받았습니다. 뼈는 부러지지 않았지만 무릎에서 피가 나고 있어 의사가 응급처치를 했다.\n18:30 피해자가 진단 결과를 과장에게 보고했다.\n2014/07/03\n오무타 트랜스 매니저가 MCI에 사고 발생 사실을 알렸다.\n2014/07/04\n보건관리관은 피해자의 상태를 면담했다.",
+     "피해자는 탱크 야드의 교차 통로에서 호스를 얻기 위해 계단을 내려갔습니다. 피해자가 계단 아래에서 FA452B 위 바닥에 오른발을 디디자 발목이 꼬였다.\n<시계열>\n14:50 B 케틀 생산 완료 후 He는 피드 탱크에서 B 케틀까지 에멀젼 모노머 라인 세척 준비를 시작했습니다. (준비 : 펌프토출용 정수호스를 연결하고 B케틀에 정수를 보낸다)\n15:00 평소에 연결되어 있는 정수호스를 다른 곳에서 사용하고 있었기 때문에 피해자는 FA452B 위층에 있는 다른 정수호스를 구하러 갔다. 피해자는 난간을 잡고 계단을 내려가다가 계단 밑에서 오른발을 바닥에 대자 발목이 삐었다.\n15:15 작업을 계속했지만 오른쪽 발등 바깥쪽 통증이 계속되고 발목이 부어 오르자 통제실로 돌아가 감독에게 보고하고 기다렸다.\n15:20 반장은 감독관에게 보고했다. (감독자는 15:25에 도착했습니다.)\n16:00 1교대를 마친 후 회사 차량으로 피해자를 병원으로 이송함.\n18:00 피해자는 위와 같은 진단을 받고 기숙사로 돌아갔다."],
+    //wk10
+    ["약 1345시간에 부상자는 Low Boiler(LB) 불순물 공급 펌프 GA-824에서 Phenol Plant로 질소 퍼징을 수행하는 작업을 할당받았습니다. 퍼지 과정에서 부상자는 압력계를 확인했고 수치가 '0'인 것을 발견했습니다. 즉시 그는 퍼지를 중지하고 시스템을 감압하라는 지시를 받았습니다. 그는 질소 감압 밸브를 열기 전에 배출 라인 밸브와 질소 차단 밸브를 분리했습니다. 그는 감압 지점에서 아무것도 나오지 않는 것을 발견하고 유연한 호스를 제거하기 시작했습니다. 유연한 호스를 제거하자 유연한 호스에 갇힌 LB가 그의 목과 팔에 몇 방울 닿았습니다.\n부상자는 PG 라인의 추가 밸브를 열지 않아 잘못된 라인업을 한 것으로 파악됐다. 그는 압력 게이지 수치가 0이었기 때문에 유연한 호스가 이미 감압되었다고 잘못 해석했습니다."],
+    //wk11 
+    ["19시 50분쯤 작업자 A, B 두 명이 소형 테스트 압출기의 나사를 청소하고 조립을 완료했다.\n20시경 작업자 B는 청소를 위해 이동한 기어펌프 조작반을 고정 위치로 옮겼다.오퍼레이터가 세팅하고 전원커넥터(AC200V)를 꽂아보았습니다. (장갑을 끼다) 삽입을 시도하던 순간 지락사고가 발생해 스파크가 발생해 작업자 B가 부상을 입었다.근로자 B(피해자)는 영향을 받은 오른손을 물로 식히고 다음을 확인하였다.그는 검지와 중지 안쪽에 물집이 있고 집게 손가락 바깥쪽에 물집이 있습니다. 피부가 벗겨지고 있었습니다.\n20시 25분경 근로자 B(피해자)가 안성시 재활병원으로 이송되어 치료를 받음 지락사고 발생 후 작업자 A는 기어펌프의 주전원을 껐다.\n2차 재난 발생을 방지하기 위한 조치를 취한 뒤 관계자에게 긴급 연락을 취했다.\n21시 40분경 근로자 B(피해자)는 안죠 시립 고세이 병원에서 치료를 받고 직장에 복귀했다.다음날(25일 오전) 전문의를 찾았다.\n(그는 약을 받았지만 병원을 방문할 필요가 없었고 일주일 후에 다시 올 예정이었습니다.)"],
+    //wk12 
+    ["피해자는 페놀 샤워 라인의 볼트와 너트를 제거하는 임무를 받았습니다. PTW에 명시된 대로 그는 화학 장갑을 착용했습니다. 그는 반응기 옆면에 마른 페놀 흔적이 있다는 사실도 모른 채 작업을 수행할 때 반응기에 기대어 있었습니다. 얼마 후 그는 오른쪽 슬개골에 타는듯한 느낌을 받았습니다. 그는 즉시 근처에 있는 보안서 직원에게 알리고 피해 부위를 씻었다. 씻는 동안 다른 보안원이 다가와 응급처치를 했다. 얼마 지나지 않아 그는 상사에 의해 병원으로 이송되었습니다.",
+     "2:30 3시에 채취한 NCO 라인에서 채취한 PDI를 채취하기 위해 밸브 A의 고착 여부를 확인하기 위해 개폐 동작을 잘못 진행함(이때 샘플링 포트는 캠 잠금 캡으로 닫혀 있음 , 포집된 NCO 라인에는 약 0.2MPa의 내압이 있었다.)\n2:50 밸브A가 닫힌 상태에서 캠록B를 열려고 시도했으나 막혀 상부 캠록A 탈거 작업이 시작됐다. 캠록을 풀고 탈거하려 하자 수거된 PDI가 틈새로 튀어나와 액체(밸브에서 캠록까지 약 100cc)에 노출돼 팀장에게 접촉했다. 그룹 리더는 그들에게 얼굴, 눈, 가글을 씻도록 지시합니다. 세안과 가글 후 눈을 씻는다.\n40분 후 휴게실에서 휴식을 취합니다.\n6시 : 인후통과 얼굴의 따끔거림은 가라앉았으나 눈의 분비물은 계속됨.\n7:10 과장/부서장이 도착하면 보고한다. 원장은 나에게 건강 검진을 받도록 지시했다.\n8:50 안과/피부과 방문\n그는 캠 잠금 장치를 제거할 때 평면 안경을 쓰고 있었지만 고글을 착용하지 않았습니다. (입는 기준이 됩니다)"],
+    //wk13
+    ["8:30 피해자는 평소 육안 검사 작업을 시작했습니다. (정상 작동)\n10:00 피해자는 폴리에틸렌 이너백이 든 캡슐(약 18,900캡슐 들어 있음)을 검사기 호퍼에 넣었다. 그녀는 폴리에틸렌 20L 들통에 빈 폴리에틸렌 봉지를 담았을 때 내 오른쪽 손목에 정전기 방전으로 인한 통증을 느꼈다. 리더의 지시에 따라 업무가 중단되고 간부들은 냉정해졌다.\n10:20 리더는 상사에게 보고합니다. 그녀는 일을 멈추고 식히라는 지시를 받았습니다.\n11:00 그녀는 리더의 동의를 얻어 작업을 재개했고, 12:00까지 작업에 몰두했습니다.\n13:00 발적과 통증이 가라앉지 않아 상사와 상담.\n13:10 그녀는 또 다른 기회에 공장을 방문한 산업 의사로부터 저온 화상 진단을 받았습니다. 작업을 마친 후 그녀는 상태를 확인하기 위해 병원을 방문하라는 지시를 받았습니다.\n17:00 퇴근 후 병원에서 진찰을 받고 처방약을 처방받았다."],
+    //wk14 
+    ["13:30 화학약품 보충을 위해 수처리 약품 운반차가 MPS에 도착했다. 생산팀은 납품 목록에 있는 화학물질명(아래와 같음)을 확인한 후 납품업체에 작업 허가증을 발급했다.\n1) PAC(폴리염화알루미늄) 10% - 1000kg (소각로 SS 처리용으로 사용)\n2) F-7430 - 400kg (냉각수 처리용으로 사용)\n3) 질산칼슘 - 3000kg (냉각수 처리용으로 사용)\n4) F-5000A - 60kg (냉각수 처리용)\n14:30 배송요원이 약품 보충을 마치고 냉각수 약품 탱크에서 여분의 PAC 탱크가 있는 곳으로 이동함(no 2,3,4). ProductionTechnician(PT)도 보충 작업을 관찰하기 위해 여분의 PAC 탱크를 향해 걸어가고 있었습니다. 그러자 배송 담당자가 여분의 PAC 탱크를 보충하는 작업을 시작했습니다. 당시 실수로 10% 차아염소산나트륨이 배송된 상태였습니다. 10% PAC 대신에 10% 차아염소산나트륨을 예비 PAC 탱크로 펌핑했습니다. 예비 PAC 탱크에 남아 있던 10% PAC와 10% 차아염소산나트륨이 반응하여 염소가스가 발생하였다. 그 결과 배달원이 가스를 흡입했다.\n14:55 PT는 SSV(Shift Supervisor)에게 배송 직원이 염소 가스를 흡입했다고 알렸습니다. 동시에 배송 직원을 구조했지만 소량의 염소 가스도 흡입했습니다."],
+    //wk15 
+    ["Strage of chemicals"],
+    //wk16 
+    ["A. 테크니션은 5일 연속 스핀 코팅 장비에서 반복적인 동작으로 많은 렌즈를 코팅하고 있으며 2014년 2월 27일 허리 통증을 호소하고 있습니다.\nB. 기술자는 장비 사용을 중단하라는 지시를 받았고 회사 클리닉이나 개인 의사를 방문할 수 있는 옵션이 주어졌습니다. 기술자는 2014년 2월 28일에 회사 클리닉을 방문하는 데 동의합니다.\nC. 제한 없이 2014년 3월 3일 직장에 복귀했습니다.",
+     "1. 이타콘산 봉지로 사다리 오르기\n2. 내용물을 부은 후 내용물이 완전히 비워질 때까지 백을 흔들기 시작합니다.\n3. 가방 끝이 잘리거나 찢어졌습니다.\n4. 피해자의 얼굴/목 부위에 먼지가 나왔다.\n5. 피해자는 얼굴과 목을 씻었습니다.\n6. 피해자는 다음 날(화요일) 감독관과 EHS 부서에 통보함.\n7. 추가 증상이 있는 경우 감독자에게 알리도록 피해자에게 지시했습니다.\n8. 다음날(수요일) 확인 결과, 피해자는 모두 괜찮다고 말했습니다.\n9. 피해자는 다음날(목요일) 출근하면서 다시 목이 아프다고 진술했다. 피해자를 병원으로 보내 국소 연고와 경구용 약물을 처방받았다. 그리고 직장으로 돌아왔습니다.",
+     "계약자는 젤 팩을 비닐 봉지에서 IBC로 옮기는 작업에 대한 기본적인 구두 지침을 받았습니다. 다른 창고 직원이 사무실에서 회의 중이었기 때문에 계약자는 무인 상태였습니다. 작업 중에 계약자는 액체가 그의 눈으로 튀는 것을 경험했습니다. 이벤트 순서는 아래와 같습니다.\n• 11시 40분에 계약자는 관리자에게 그가 젤 팩을 용기에 넣을 때 더러운 물이 튀어 나와 그의 눈에 튀었다고 알렸습니다. 멸균 안약을 사용하여 눈을 닦았고 계약자는 병원에 가야 하는지 물었습니다. 그는 아니오라고 말했고 직장으로 돌아가도 괜찮다고 말했습니다. 관리자는 계약자에게 작업을 완료하기 위해 보호 안경을 착용하도록 지시했습니다.\n• 12시 20분에 관리자는 계약자가 괜찮은지 다시 확인하라는 요청을 받았습니다. 계약자는 그의 눈이 계속 눈물을 흘리며 그 안에 무언가가 있는 것처럼 느꼈다고 말했습니다. 관리자는 계약자를 현지 사고 및 응급 부서로 데려가라는 지시를 받았습니다. 젤 팩과 버미큘라이트에 대한 SDS는 사고 및 응급실에 제공되었습니다.\n• 약 14:40에 관리자는 계약자로부터 의사가 업무 복귀를 허가했다는 전화를 받았습니다. 관리자는 그를 수집하여 약 15:30에 시설로 다시 데려왔습니다. 계약자는 관리자에게 병원에서 약을 투여했으며 작업 활동으로 돌아가도 괜찮다고 말했습니다. 계약자는 오후 4시(이전에 합의한 완료 시간)까지 작업했으며 다음 날 작업할 것이라고 말했습니다.\n• 2018년 4월 4일 수요일 7시 8분에 관리자는 계약자로부터 눈이 여전히 따끔거려서 일을 하지 않겠다는 문자를 받았습니다.\n• 4월 5일 목요일 – 계약자가 업무에 복귀했습니다.",
+     "1) 직원이 13:00에 안전관리자에게 전화를 걸어 팔의 자극을 보고함.\n2) 안전관리자가 제조장에 도착하면 직원을 검사하고 직원이 셔츠를 벗고 오염된 부분을 헹굽니다.\n3) 직원은 노출에 대해 알지 못했기 때문에 어떤 화학물질이 자극을 유발했을 수 있는지 모른다고 진술했습니다.\n4) 지역 병원으로 보내기로 결정.\n5) 의사에게 제공하기 위해 마지막 2교대 동안 처리된 모든 품목의 SDS를 직원에게 제공했습니다.\n6) Dr.는 직원이 월요일 이후 병원을 방문하여 업무에 복귀하도록 허용했습니다."],
+    //wk17
+    ["Solid-phase raw material input work"],
+    //wk18
+    ["wk18"],
+    //wk19 
+    ["wk19"]];
+
+      if (work1==0){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==1){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==2){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==3){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==4){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==5){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==6){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==7){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==8){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==9){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==10){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==11){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==12){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==13){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==14){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==15){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==16){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==17){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==18){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      } else if(work1==19){
+        wk1n=reports[work1].length;
+        wk1r=Math.floor(Math.random() * wk1n);
+      }
+
+      var photo1 = 'Reports/'+ work1 +'_'+ wk1r +'.jpg';
+      var text1 = reports[work1][wk1r];
+      
+      iframeDocument1.open();
+      iframeDocument1.write('<pre>' + text1 + '</pre>');
+      iframeDocument1.close();
+
+      if (work2==0){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==1){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==2){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==3){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==4){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==5){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==6){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==7){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==8){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==9){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==10){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==11){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==12){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==13){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==14){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==15){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==16){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==17){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==18){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      } else if(work2==19){
+        wk2n=reports[work2].length;
+        wk2r=Math.floor(Math.random() * wk2n);
+      }
+      
+      var photo2 = 'Reports/'+ work2 +'_'+ wk2r +'.jpg';
+      var text2 = reports[work2][wk2r];
+      
+      iframeDocument2.open();
+      iframeDocument2.write('<pre>' + text2 + '</pre>');
+      iframeDocument2.close();
+
+      photoElement1.src=photo1;
+      photoElement2.src=photo2;
+    
+    //意識グラフ表示
+     //選択データ取得
+    var data1;
+    var ele = document.getElementsByName('radio1');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data1=ele[i].value;
+      }
+     };
+
+    var data2;
+    var ele = document.getElementsByName('radio2');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data2=ele[i].value;
+      }
+     };
+
+    var data3;
+    var ele = document.getElementsByName('radio3');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data3=ele[i].value;
+      }
+     };
+
+    var data4;
+    var ele = document.getElementsByName('radio4');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data4=ele[i].value;
+      }
+     };
+
+    var data5;
+    var ele = document.getElementsByName('radio5');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data5=ele[i].value;
+      }
+     }; 
+
+    var data6;
+    var ele = document.getElementsByName('radio6');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data6=ele[i].value;
+      }
+     };
+
+    var data7;
+    var ele = document.getElementsByName('radio7');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data7=ele[i].value;
+      }
+     };
+
+    var data8;
+    var ele = document.getElementsByName('radio8');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data8=ele[i].value;
+      }
+     };
+
+    var data9;
+    var ele = document.getElementsByName('radio9');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data9=ele[i].value;
+      }
+     };
+
+    var data10;
+    var ele = document.getElementsByName('radio10');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data10=ele[i].value;
+      }
+     };
+    
+    var data11;
+    var ele = document.getElementsByName('radio11');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data11=ele[i].value;
+      }
+     };
+
+    var data12;
+    var ele = document.getElementsByName('radio12');
+     for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked) {
+      data12=ele[i].value;
+      }
+     };
+    
+     //グラフの設定
+    data = [data1,data2,data3,data4,data5,data6,data7,data8,data9,data10,data11,data12];
+    const ctx = document.getElementById('radar-chart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['No thinking', 'Leckless', 'Ignore', 'No awareness', 'Lack of knowledge', 'No consciouness', 'Insensitive', 'Lack of interest', 'Without permission' , work[wk1], work[wk2], process[pr1]],
+          datasets: [{
+            label: 'Magnitude of risk',
+            data: data,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          scale: {
+            ticks: {
+              beginAtZero: true,
+						min: 0,
+						max: 5,
+						stepSize: 1
+            }
+          }
+        }
+      });
+    
+    }
+
+  </script>
+</html>
