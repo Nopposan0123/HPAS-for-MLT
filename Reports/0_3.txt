@@ -1,0 +1,11 @@
+11:50 When Team B was preparing to start up the extraction equipment, he discovered a leak in the valve and contacted Team Leader A.
+11:55 Team leader A (victim) checked the site and identified the leak location (presumed to be a broken diaphragm)
+12:10　Group leader A carried out curing work to replace the diaphragm of the valve
+・Adjust the liquid level of the extraction tower, which is the blow destination, in order to perform N2 blowing of the valve installation piping (reaction liquid feeding)
+・Implemented N2 blowing of the reaction liquid feeding pipe. After blowing, the nitrogen valve was closed, and no liquid came out from the bottom SG of the valve, so it was determined that there was no residual liquid. On the other hand, it was determined that the internal pressure had escaped to the extraction tower side by closing the nitrogen valve.
+12:15 Loosen the two nuts on the bottom of the bonnet of the valve and confirm that there is no residual liquid, then loosen the two nuts on the top and shake the valve handle to confirm that no liquid comes out.
+12:18 All four nuts on the valve bonnet were removed, and when he tried to remove the valve, internal fluid spouted out and he was exposed to approximately 1 liter of liquid from the left frontal area to his chest. (Ethyl acetate/hexane, estimated leakage amount: 20 liters) Group leader A was wearing goggles and antistatic gloves, but residual liquid entered his left eye through the gaps in the goggles.
+12:21 　Group leader A rushed to the management room, requested support, reported to the manager, and started washing his eyes.
+12:23　The section manager arrived at the management office, checked the situation, and instructed the victims to continue washing their eyes.
+12:35 Request for hospital arrangements from the section chief to the management department
+12:45: Victims stopped washing their faces and washed their bodies in the shower
